@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(to right, #000000, #1a1a1a);
+            padding: 18px 50px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: white !important;
+        }
+        .navbar-nav {
+            margin-left: auto; /* Push items to the right */
+        }
+        .navbar-nav .nav-item {
+            margin: 0 18px;
+        }
+        .navbar-nav .nav-link {
+            font-size: 20px;
+            color: white !important;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #ffc107 !important;
+        }
+        .navbar-toggler {
+            border: none;
+        }
+        .navbar-toggler-icon {
+            background-color: white;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .dropdown-menu {
+            background-color: #202A44;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown-item {
+            color: white !important;
+            font-weight: bold;
+        }
+        .dropdown-item:hover {
+            background-color: #ffc107 !important;
+            color: black !important;
+        }
+
+        /* Tab Navigation */
+
+
+        .nav-tabs {
+    margin-top: 20px;
+    overflow-x: auto; /* Allow scrolling on small screens */
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+    border-bottom: none; /* Removed the yellow line */
+}
+
+        
+        
+        .nav-tabs .nav-link {
+            background: #202A44;
+            color: white;
+            border-radius: 8px;
+            margin: 3px;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-tabs .nav-link:hover {
+            background: #ffc107;
+            color: black;
+        }
+        .nav-tabs .nav-link.active {
+            background: #ffc107;
+            color: black;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-section {
+                        margin-bottom: 30px;
+                        padding: 15px;
+                        border-radius: 8px;
+                        background: #f9f9f9;
+                        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+                    }
+                
+                    .player-grid, .staff-grid {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 15px;
+                        justify-content: start;
+                    }
+                
+                    .player {
+                        text-align: center;
+                        width: 120px;
+                    }
+                
+                    .player img {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 3px solid #ddd;
+                    }
+                
+                    h2, h3, h4 {
+                        color: #202A44;
+                        margin-bottom: 10px;
+                    }
+
+        /* General Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Header Styling */
+th {
+    background-color: #202A44; /* Dark Blue */
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+}
+
+/* Row Styling */
+td {
+    padding: 12px;
+    color: #333;
+}
+
+/* Alternating Row Colors */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Hover Effect */
+tr:hover {
+    background-color: #e0f2ff; /* Light Blue */
+    transition: 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table {
+        font-size: 16px;
+    }
+    th, td {
+        padding: 8px;
+    }
+}
+
+
+        </style>
+
+
+<script>
+    function f(){
+
+        const fullCommentaryData = [
+            { ball: '17.6', text: "A stunning shot! David Warner hits a six! Australia win the match." },
+            { ball: '17.5', text: "Another dot ball from the bowler. Pressure is building." },
+            { ball: '17.4', text: "A boundary! Warner is taking control of the game." },
+            { ball: '17.3', text: "Dot ball. The fielding side is tightening the screws." },
+            { ball: '17.2', text: "Warner plays a quick single. He’s looking calm." },
+            { ball: '17.1', text: "Warner hits a two. Australia inching closer to the target." },
+            { ball: '16.6', text: "Single taken by Warner. The game is still tight." },
+            { ball: '16.5', text: "A quick delivery from the bowler, another dot ball." },
+            { ball: '16.4', text: "Beautiful shot! Four runs off a fine cover drive." },
+            { ball: '16.3', text: "A single down the ground to rotate the strike." },
+            { ball: '16.2', text: "Another boundary! This time, through mid-wicket." },
+            { ball: '16.1', text: "A wide delivery, but Warner cuts it for a single." },
+            { ball: '17.6', text: "Excellent delivery! No runs off that ball." },
+            { ball: '17.5', text: "Warner punches it for a single." },
+            { ball: '17.4', text: "The bowler keeps it tight with another dot ball." },
+            { ball: '17.3', text: "A well-placed shot through the off-side for four runs." },
+            { ball: '17.2', text: "Warner defends it solidly. No runs off that ball." },
+            { ball: '17.1', text: "A single to Warner off the first ball." }
+        ];
+
+        const commentaryDiv = document.getElementById("commentary");
+
+        fullCommentaryData.forEach(commentary => {
+            const p = document.createElement("p");
+            p.innerHTML = `<strong>${commentary.ball}</strong> - ${commentary.text}`;
+            commentaryDiv.appendChild(p);
+        });
+    }
+    
+</script>
+
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Cricket Live</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="responsiveSchedule.html">Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="responsiveArchives.html">Archives</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="rankingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ranking
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="rankingDropdown">
+                            <li><a class="dropdown-item" href="rankingMen.html">ICC Ranking - Men</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="teamsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Teams
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="teamsDropdown">
+                            <li><a class="dropdown-item" href="Tindia.html">India</a></li>
+                            <li><a class="dropdown-item" href="Taustralia.html">Australia</a></li>
+                            <li><a class="dropdown-item" href="Tengland.html">England</a></li>
+                            <li><a class="dropdown-item" href="Tsouthafric.html">South Africa</a></li>
+                            <li><a class="dropdown-item" href="TsriLanka.html">Sri Lanka</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="newbiee.html">Newbiee</a></li>
+      
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+      
+                </ul>
+            </div>
+        </div>
+    </nav>
+      
+    <!-- Tabs for Sections -->
+    <div class="container">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#commentary">Commentary</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#scorecard">Scorecard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#squads">Squads</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#highlights">Highlights</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+
+
+          
+
+              <!-- Match Details & Highlights Section -->
+<div class="tab-pane fade show active" id="commentary">
+
+    <div class="match-details-section row p-3 border-bottom align-items-center">
+        
+        <!-- Highlights Video -->
+        <div class="col-md-5 col-12 text-center mb-3">
+            <h4>Watch Highlights</h4>
+            <a href="https://youtu.be/g--C2srD_5I?si=43spYQelsbKkNIAm" target="_blank">
+                <img src="images/T20 Australia/5699a623d131226b37487f175d947f2e.jpg" 
+                     alt="Match Highlights" 
+                     class="img-fluid rounded" 
+                     style="width: 100%; max-width: 400px;">
+            </a>
+        </div>
+
+        <!-- Match Details -->
+        <div class="col-md-7 col-12">
+            <h2>Australia vs England - T20</h2>
+            <h4>Winner - Australia</h4>
+            <p><strong>Date:</strong> 18th January | <strong>Venue:</strong> Sydney Cricket Ground</p>
+
+            <div class="score-section">
+                <h4>Final Score:</h4>
+                <p><strong>Australia:</strong> 198/5 (20 overs)</p>
+                <p><strong>England:</strong> 190/9 (20 overs)</p>
+            </div>
+
+            <h4>Match Highlights:</h4>
+            <ul>
+                <li><strong>Man of the Match:</strong> David Warner</li>
+                <li>Best Bowler: Pat Cummins (3/28)</li>
+                <li>Best Batsman: David Warner (72 runs off 45 balls)</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Commentary Section -->
+    <div class="commentary-section p-3">
+        <h4>Match Commentary</h4>
+
+        <!-- Commentary list -->
+        <div class="commentary-list" id="commentary-list">
+            <p><strong>19.6</strong> - A stunning shot! David Warner hits a six! Australia win the match.</p>
+            <p><strong>19.5</strong> - Another dot ball from the bowler. Pressure is building.</p>
+            <p><strong>19.4</strong> - A boundary! Warner is taking control of the game.</p>
+            <p><strong>19.3</strong> - Dot ball. The fielding side is tightening the screws.</p>
+            <p><strong>19.2</strong> - Warner plays a quick single. He’s looking calm.</p>
+            <p><strong>19.1</strong> - Warner hits a two. Australia inching closer to the target.</p>
+            <p><strong>18.6</strong> - Single taken by Warner. The game is still tight.</p>
+            <p><strong>18.5</strong> - A quick delivery from the bowler, another dot ball.</p>
+            <p><strong>18.4</strong> - Beautiful shot! Four runs off a fine cover drive.</p>
+            <p><strong>18.3</strong> - A single down the ground to rotate the strike.</p>
+            <p><strong>18.2</strong> - Another boundary! This time, through mid-wicket.</p>
+            <p><strong>18.1</strong> - A wide delivery, but Warner cuts it for a single.</p>
+        </div>
+
+        <!-- Load Full Commentary Button -->
+        <button id="load-more-btn" class="btn btn-primary">Load 2 More Overs</button>
+    </div>
+
+</div>
+
+                
+                
+              
+                <div class="tab-pane fade" id="scorecard">
+                    
+                
+                    <!-- Match Result -->
+<h6 style="text-align: left; color: green; margin-bottom: 30px;">🏆 Australia won the match by 5 wickets</h6>
+
+<!-- England Innings (Batting First) -->
+<div class="innings">
+    <div style="background-color: red; color: white; padding: 8px; font-size: 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+        <span>🔹 England Innings</span>
+        <span>190-9 (20 ov)</span>
+    </div>
+
+    <table>
+        <tr>
+            <th>Batter</th>
+            <th>Dismissal</th>
+            <th>R</th>
+            <th>B</th>
+            <th>4s</th>
+            <th>6s</th>
+            <th>SR</th>
+        </tr>
+        <tr>
+            <td>Jos Buttler</td>
+            <td>b Pat Cummins</td>
+            <td>50</td>
+            <td>32</td>
+            <td>6</td>
+            <td>2</td>
+            <td>156.2</td>
+        </tr>
+        <tr>
+            <td>Jonny Bairstow</td>
+            <td>c Warner b Starc</td>
+            <td>38</td>
+            <td>25</td>
+            <td>4</td>
+            <td>1</td>
+            <td>152.0</td>
+        </tr>
+        <tr>
+            <td>Ben Stokes</td>
+            <td>c Maxwell b Zampa</td>
+            <td>29</td>
+            <td>20</td>
+            <td>2</td>
+            <td>2</td>
+            <td>145.0</td>
+        </tr>
+        <tr>
+            <td>Moeen Ali</td>
+            <td>lbw b Cummins</td>
+            <td>14</td>
+            <td>10</td>
+            <td>1</td>
+            <td>1</td>
+            <td>140.0</td>
+        </tr>
+        <tr>
+            <td><strong>Extras</strong></td>
+            <td colspan="6"><strong>12 (nb 1, w 6, b 3, lb 2)</strong></td>
+        </tr>
+        <tr>
+            <td><strong>Total</strong></td>
+            <td colspan="6"><strong>190-9 (20 overs)</strong></td>
+        </tr>
+    </table>
+    <p><strong>Fall of Wickets:</strong> 60-1 (Bairstow), 102-2 (Stokes), 140-3 (Buttler), 165-4 (Ali), 175-5 (Livingstone)</p>
+    <p><strong>Did Not Bat:</strong> Adil Rashid, Chris Woakes</p>
+</div>
+
+<!-- Australia Bowling -->
+<div class="bowling">
+   
+    <table style="margin-bottom: 40px;">
+        <tr>
+            <th>Bowler</th>
+            <th>O</th>
+            <th>M</th>
+            <th>R</th>
+            <th>W</th>
+            <th>Economy</th>
+        </tr>
+        <tr>
+            <td>Pat Cummins</td>
+            <td>4</td>
+            <td>0</td>
+            <td>28</td>
+            <td>3</td>
+            <td>7.00</td>
+        </tr>
+        <tr>
+            <td>Mitchell Starc</td>
+            <td>4</td>
+            <td>0</td>
+            <td>34</td>
+            <td>2</td>
+            <td>8.50</td>
+        </tr>
+        <tr>
+            <td>Adam Zampa</td>
+            <td>4</td>
+            <td>0</td>
+            <td>29</td>
+            <td>2</td>
+            <td>7.25</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Australia Innings (Chasing) -->
+<div class="innings">
+    <div style="background-color: yellow; color: green; padding: 8px; font-size: 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+        <span>🔹 Australia Innings</span>
+        <span>198-5 (20 ov)</span>
+    </div>
+
+    <table>
+        <tr>
+            <th>Batter</th>
+            <th>Dismissal</th>
+            <th>R</th>
+            <th>B</th>
+            <th>4s</th>
+            <th>6s</th>
+            <th>SR</th>
+        </tr>
+        <tr>
+            <td>David Warner</td>
+            <td>c Stokes b Rashid</td>
+            <td>72</td>
+            <td>45</td>
+            <td>8</td>
+            <td>3</td>
+            <td>160.0</td>
+        </tr>
+        <tr>
+            <td>Travis Head</td>
+            <td>c Buttler b Wood</td>
+            <td>35</td>
+            <td>22</td>
+            <td>4</td>
+            <td>2</td>
+            <td>159.0</td>
+        </tr>
+        <tr>
+            <td>Glenn Maxwell</td>
+            <td>lbw b Ali</td>
+            <td>28</td>
+            <td>18</td>
+            <td>2</td>
+            <td>2</td>
+            <td>155.5</td>
+        </tr>
+        <tr>
+            <td>Steve Smith</td>
+            <td>c Bairstow b Rashid</td>
+            <td>10</td>
+            <td>9</td>
+            <td>1</td>
+            <td>0</td>
+            <td>111.1</td>
+        </tr>
+        <tr>
+            <td><strong>Extras</strong></td>
+            <td colspan="6"><strong>15 (nb 2, w 8, b 3, lb 2)</strong></td>
+        </tr>
+        <tr>
+            <td><strong>Total</strong></td>
+            <td colspan="6"><strong>198-5 (20 overs)</strong></td>
+        </tr>
+    </table>
+    <p><strong>Fall of Wickets:</strong> 45-1 (Head), 89-2 (Smith), 120-3 (Maxwell), 165-4 (Warner), 185-5 (Marsh)</p>
+    <p><strong>Did Not Bat:</strong> Pat Cummins, Mitchell Starc, Adam Zampa</p>
+</div>
+
+<!-- England Bowling -->
+<div class="bowling">
+    <table>
+        <tr>
+            <th>Bowler</th>
+            <th>O</th>
+            <th>M</th>
+            <th>R</th>
+            <th>W</th>
+            <th>Economy</th>
+        </tr>
+        <tr>
+            <td>Chris Woakes</td>
+            <td>4</td>
+            <td>0</td>
+            <td>45</td>
+            <td>1</td>
+            <td>11.25</td>
+        </tr>
+        <tr>
+            <td>Adil Rashid</td>
+            <td>4</td>
+            <td>0</td>
+            <td>29</td>
+            <td>2</td>
+            <td>7.25</td>
+        </tr>
+        <tr>
+            <td>Moeen Ali</td>
+            <td>4</td>
+            <td>0</td>
+            <td>35</td>
+            <td>1</td>
+            <td>8.75</td>
+        </tr>
+    </table>
+</div>
+
+</div>              
+                
+                
+
+
+                <div class="tab-pane fade" id="squads">
+                    <h2>🏏 Squads - Australia vs England</h2>
+                
+                    <!-- Australia Squad -->
+                    <div class="team-section">
+                        <h3><img src="https://flagcdn.com/w40/au.png" alt="Australia Flag" class="flag-icon">Australia Squad</h3>
+                
+                        <!-- Playing XI -->
+                        <h4 style="margin-top: 30px;">🔥 Playing XI</h4>
+                        <div class="player-grid">
+                            <div class="player">
+                                <img src="images/Australia/warner.png" alt="David Warner">
+                                <p><strong>David Warner</strong> (C)</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/Australia/travis-head.png" alt="Travis Head">
+                                <p>Travis Head</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/Australia/smith.jpg" alt="Steve Smith">
+                                <p>Steve Smith</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/Australia/Glenn-Maxwell.webp" alt="Glenn Maxwell">
+                                <p>Glenn Maxwell</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/Australia/Marce.png" alt="Mitchell Marsh">
+                                <p>Mitchell Marsh</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/Australia/Alex.png" alt="Alex Carey">
+                                <p>Alex Carey (WK)</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/Australia/Stark.avif" alt="Mitchell Starc">
+                                <p>Mitchell Starc</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/Australia/Pat.png" alt="Pat Cummins">
+                                <p>Pat Cummins</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/Australia/Zampa.png" alt="Adam Zampa">
+                                <p>Adam Zampa</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/Australia/Josh.png" alt="Josh Hazlewood">
+                                <p>Josh Hazlewood</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/Australia/Stoinic.png" alt="Marcus Stoinis">
+                                <p>Marcus Stoinis</p>
+                            </div>
+                        </div>
+                
+                        <!-- Bench -->
+                        <h4>🛋️ Bench</h4>
+                        <div class="player-grid">
+                            <div class="player">
+                                <img src="images/Australia/Nathan.png" alt="Nathan Ellis">
+                                <p>Nathan Ellis</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/Australia/Green.png" alt="Cameron Green">
+                                <p>Cameron Green</p>
+                            </div>
+                        </div>
+                
+                        <!-- Support Staff -->
+                        <h4>🧢 Support Staff</h4>
+                        <div class="staff-grid">
+                            <div class="player">
+                                <img src="images/South Africa/Coach 1.webp" alt="Andrew McDonald">
+                                <p><strong>Coach:</strong> Andrew McDonald</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/South Africa/Coach 3.png" alt="Physio">
+                                <p><strong>Physio:</strong> Alex Kountouris</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- England Squad -->
+                    <div class="team-section">
+                        <h3><img src="https://flagcdn.com/w40/gb.png" alt="England Flag" class="flag-icon"> England Squad</h3>
+                
+                        <!-- Playing XI -->
+                        <h4 style="margin-top: 30px;">🔥 Playing XI</h4>
+                        <div class="player-grid">
+                            <div class="player">
+                                <img src="images/England/Buttler.png" alt="Jos Buttler">
+                                <p><strong>Jos Buttler</strong> (C & WK)</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/England/Baristow.png" alt="Jonny Bairstow">
+                                <p>Jonny Bairstow</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/England/Ben.png" alt="Ben Stokes">
+                                <p>Ben Stokes</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/England/Malan.png" alt="Dawid Malan">
+                                <p>Dawid Malan</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/England/Moeen.png" alt="Moeen Ali">
+                                <p>Moeen Ali</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/England/Liam.png" alt="Liam Livingstone">
+                                <p>Liam Livingstone</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/England/Sam.png" alt="Sam Curran">
+                                <p>Sam Curran</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/England/Chris.png" alt="Chris Woakes">
+                                <p>Chris Woakes</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/England/Chris.png" alt="Chris Jordan">
+                                <p>Chris Jordan</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/England/Wood.png" alt="Mark Wood">
+                                <p>Mark Wood</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/England/Adil.png" alt="Adil Rashid">
+                                <p>Adil Rashid</p>
+                            </div>
+                        </div>
+                
+                        <!-- Bench -->
+                        <h4>🛋️ Bench</h4>
+                        <div class="player-grid">
+                            <div class="player">
+                                <img src="images/England/Reece.png" alt="Reece Topley">
+                                <p>Reece Topley</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/England/Matt-Parkinson.png" alt="Matt Parkinson">
+                                <p>Matt Parkinson</p>
+                            </div>
+                        </div>
+                
+                        <!-- Support Staff -->
+                        <h4>🧢 Support Staff</h4>
+                        <div class="staff-grid">
+                            <div class="player">
+                                <img src="images/South Africa/Coach 1.webp" alt="Matthew Mott">
+                                <p><strong>Coach:</strong> Matthew Mott</p>
+                            </div>
+                            <div class="player">
+                                <img src="images/South Africa/Coach 3.png" alt="Physio">
+                                <p><strong>Physio:</strong> Ben Langley</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+               
+
+                <div class="tab-pane fade" id="highlights">
+                    <h2 style="text-align: center; margin-bottom: 20px;">📺 Video Highlights - Australia vs England</h2>
+                
+                    <!-- Video Highlights Section -->
+                    <div class="video-highlights" style="text-align: center; margin-top: 50px;">
+                        <h4>🎥 Watch Full Match Highlights</h4>
+                
+                        <a href="https://youtu.be/9i1ZLw_Sr5M?si=tf0gnT_MhVOwPOtH" target="_blank">
+                            <img src="images/England T20 2023/images (2).jpg" 
+                                alt="Match Highlights" 
+                                style="width: 100%; max-width: 500px; border-radius: 10px; margin-top: 15px;">
+                        </a>  
+                
+                        <p>Click **Play** to watch the official highlights of the match!</p>
+                        
+                        <!-- Clickable Thumbnail Image -->
+                        <a href="https://youtu.be/9i1ZLw_Sr5M?si=tf0gnT_MhVOwPOtH" target="_blank">
+                            <img src="images/T20 Australia/download.jpg" 
+                                alt="Match Highlights" 
+                                style="width: 100%; max-width: 500px; border-radius: 10px; margin-top: 15px;">
+                        </a>
+                    </div>
+                </div>
+                
+
+
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+ <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <!-- About Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">About Us</h5>
+          <p>Cricket Score Site is your go-to destination for live scores, player stats, and exciting cricket updates. Whether you're a seasoned fan or a newbie, we offer comprehensive content to help you enjoy the game.</p>
+        </div>
+  
+        <!-- Quick Links Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="/" class="text-white">Home</a></li>
+            <li><a href="/scores" class="text-white">Scores</a></li>
+            <li><a href="/players" class="text-white">Players</a></li>
+            <li><a href="#newbie" class="text-white">Newbie</a></li>
+          </ul>
+        </div>
+  
+        <!-- Contact Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-phone-alt"></i> +1 234 567 890</li>
+            <li><i class="fas fa-envelope"></i> support@cricketscores.com</li>
+            <li><i class="fas fa-map-marker-alt"></i> 123 Cricket Lane, Cricket City, Country</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Social Media Links -->
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <a href="https://facebook.com" class="text-white mx-2" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="https://twitter.com" class="text-white mx-2" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+          <a href="https://instagram.com" class="text-white mx-2" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+          <a href="https://youtube.com" class="text-white mx-2" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Footer Bottom -->
+    <div class="text-center py-3" style="background-color: #212529;">
+      <p>&copy; 2025 Cricket Score Site | All rights reserved</p>
+    </div>
+  </footer>
+  
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

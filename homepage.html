@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Live Score</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       
+        .score-box {
+            border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        background: #f8f9fa;
+        }
+
+        .match-header {
+            font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        }
+
+        .flag-icon {
+        width: 30px;
+        height: 20px;
+        border-radius: 3px;
+    }
+        .score-details {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        
+        
+        .team-section {
+            margin-top: 20px;
+        }
+        .table-striped tbody tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        .score-box {
+    border: 2px solid #f1f1f1;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px; /* Adds rounded corners */
+}
+
+.score-box:hover {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Adds a soft shadow */
+    transform: scale(1.03); /* Slightly increases size */
+    background-color: #ffffff; /* Lightens the background slightly */
+}
+
+.navbar {
+        background: linear-gradient(to right, #000000, #1a1a1a);
+        padding: 18px 50px; /* Increased spacing */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .navbar-brand {
+        font-size: 24px; /* Increased font size */
+        font-weight: bold;
+        color: white !important;
+    }
+    .navbar-nav {
+        margin-left: auto; /* Push items to the right */
+    }
+    .navbar-nav .nav-item {
+        margin: 0 18px; /* More spacing between items */
+    }
+    .navbar-nav .nav-link {
+        font-size: 20px; /* Bigger font size */
+        color: white !important;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+    }
+    .navbar-nav .nav-link:hover {
+        color: #ffc107 !important; /* Gold hover effect */
+    }
+
+    /* Tab Navigation */
+    .nav-tabs {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+    }
+    .nav-tabs .nav-link {
+        background: #202A44; /* Dark blue tab */
+        color: white;
+        border-radius: 8px;
+        margin: 3px;
+        padding: 12px 18px; /* Increased padding */
+        font-size: 18px; /* Bigger font size */
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+    .nav-tabs .nav-link:hover {
+        background: #ffc107; /* Gold hover effect */
+        color: black;
+    }
+    .nav-tabs .nav-link.active {
+        background: #ffc107; /* Active tab */
+        color: black;
+    }
+
+    .dropdown-menu {
+            background-color: #202A44; /* Dark blue dropdown */
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown-item {
+            color: white !important;
+            font-weight: bold;
+        }
+        .dropdown-item:hover {
+            background-color: #ffc107 !important;
+            color: black !important;
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Cricket Live</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="responsiveSchedule.html">Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="responsiveArchives.html">Archives</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="rankingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ranking
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="rankingDropdown">
+                            <li><a class="dropdown-item" href="rankingMen.html">ICC Ranking - Men</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="teamsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Teams
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="teamsDropdown">
+                            <li><a class="dropdown-item" href="Tindia.html">India</a></li>
+                            <li><a class="dropdown-item" href="Taustralia.html">Australia</a></li>
+                            <li><a class="dropdown-item" href="Tengland.html">England</a></li>
+                            <li><a class="dropdown-item" href="Tsouthafric.html">South Africa</a></li>
+                            <li><a class="dropdown-item" href="TsriLanka.html">Sri Lanka</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="newbiee.html">Newbiee</a></li>
+      
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+      
+                </ul>
+            </div>
+        </div>
+      </nav>
+<div class="container p-3 shadow bg-white rounded mb-4">    
+    <div class="container my-5">
+        <div id="matchesContent">
+            <h2>Live Matches</h2>
+    
+            <div class="score-box">
+                <div class="match-header d-flex justify-content-between align-items-center" 
+                     data-bs-toggle="modal" data-bs-target="#matchDetailsModal">
+                    <div class="d-flex align-items-center">
+                        <img src="https://flagcdn.com/w40/in.png" alt="India Flag" class="flag-icon">
+                        <span class="mx-2">India</span>
+                        <strong>VS</strong>
+                        <span class="mx-2">Australia</span>
+                        <img src="https://flagcdn.com/w40/au.png" alt="Australia Flag" class="flag-icon">
+                    </div>
+                </div>
+                <div class="score-details">
+                    <div><strong>India:</strong> 168/5 (19.4 overs)</div>
+                    <div><strong>Australia:</strong> 170/6 (20 overs)</div>
+                    <div><strong>Target:</strong> 171 | <strong>Required Runs:</strong>India needs 3 in 2 balls</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="matchDetailsModal" tabindex="-1" aria-labelledby="matchDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="matchDetailsModalLabel">India vs Australia - Match Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- Chasing Team (India) Batting & Opposite Team (Australia) Bowling -->
+                    <div class="team-section">
+                        <h4>Batting (India)</h4>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Batsman</th>
+                                    <th>Runs</th>
+                                    <th>Balls</th>
+                                    <th>4s</th>
+                                    <th>6s</th>
+                                    <th>Strike Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Virat Kohli <br> <small>Not Out</small></td>
+                                    <td>60</td>
+                                    <td>40</td>
+                                    <td>6</td>
+                                    <td>3</td>
+                                    <td>150.0</td>
+                                </tr>
+                                <tr>
+                                    <td>Suryakumar Yadav <br> <small>Not Out</small></td>
+                                    <td>45</td>
+                                    <td>25</td>
+                                    <td>5</td>
+                                    <td>2</td>
+                                    <td>180.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p><strong>Extras:</strong> 8 (3w, 5nb)</p>
+                        <p><strong>Total:</strong> 168/5 (19.4 overs)</p>
+                    </div>
+
+                    <div class="team-section">
+                        <!-- Australia Bowling Table (Only Bowlers Who Took Wickets) -->
+                        <h4>Bowling (Australia)</h4>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Bowler</th>
+                                    <th>Overs</th>
+                                    <th>Maiden</th>
+                                    <th>Wickets</th>
+                                    <th>Runs</th>
+                                    <th>Economy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mitchell Starc</td>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>40</td>
+                                    <td>10.0</td>
+                                </tr>
+                                <tr>
+                                    <td>Josh Hazlewood</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>35</td>
+                                    <td>8.75</td>
+                                </tr>
+                                <tr>
+                                    <td>Aaron Finch</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>28</td>
+                                    <td>14.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Link to View Full Score -->
+                    <div class="text-center">
+                        <a href="liveIndvsAus.html" class="btn btn-primary">View Full Score</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div id="matchesContent">
+            
+            <div class="score-box">
+                <div class="match-header d-flex justify-content-between align-items-center" 
+                     data-bs-toggle="modal" data-bs-target="#matchDetailsModalSLBAN">
+                    <div class="d-flex align-items-center">
+                        <img src="https://flagcdn.com/w40/lk.png" alt="Sri Lanka Flag" class="flag-icon">
+                        <span class="mx-2">Sri Lanka</span>
+                        <strong>VS</strong>
+                        <span class="mx-2">Bangladesh</span>
+                        <img src="https://flagcdn.com/w40/bd.png" alt="Bangladesh Flag" class="flag-icon">
+                    </div>
+                </div>
+                <div class="score-details">
+                    <div><strong>Sri Lanka:</strong> 130/6 (18.2 overs)</div>
+                    <div><strong>Bangladesh:</strong> 155/7 (20 overs)</div>
+                    <div><strong>Target:</strong> 156 | <strong>Required Runs:</strong>Sri Lanka needs 25 in 10 balls</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="matchDetailsModalSLBAN" tabindex="-1" aria-labelledby="matchDetailsModalLabelSLBAN" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="matchDetailsModalLabelSLBAN">Sri Lanka vs Bangladesh - Match Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+    
+                    <!-- Chasing Team (Sri Lanka) Batting & Opposite Team (Bangladesh) Bowling -->
+                    <div class="team-section">
+                        <h4>Batting (Sri Lanka)</h4>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Batsman</th>
+                                    <th>Runs</th>
+                                    <th>Balls</th>
+                                    <th>4s</th>
+                                    <th>6s</th>
+                                    <th>Strike Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Kusal Mendis <br> <small>Not Out</small></td>
+                                    <td>55</td>
+                                    <td>35</td>
+                                    <td>7</td>
+                                    <td>2</td>
+                                    <td>157.1</td>
+                                </tr>
+                                <tr>
+                                    <td>Charith Asalanka <br> <small>Not Out</small></td>
+                                    <td>42</td>
+                                    <td>28</td>
+                                    <td>5</td>
+                                    <td>1</td>
+                                    <td>150.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p><strong>Extras:</strong> 10 (4w, 6nb)</p>
+                        <p><strong>Total:</strong> 154/6 (18.2 overs)</p>
+                    </div>
+    
+                    <div class="team-section">
+                        <!-- Bangladesh Bowling Table (Only Bowlers Who Took Wickets) -->
+                        <h4>Bowling (Bangladesh)</h4>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Bowler</th>
+                                    <th>Overs</th>
+                                    <th>Maiden</th>
+                                    <th>Wickets</th>
+                                    <th>Runs</th>
+                                    <th>Economy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Shakib Al Hasan</td>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>2</td>
+                                    <td>32</td>
+                                    <td>8.0</td>
+                                </tr>
+                                <tr>
+                                    <td>Mustafizur Rahman</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>30</td>
+                                    <td>7.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Taskin Ahmed</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>25</td>
+                                    <td>12.5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                    <!-- Link to View Full Score -->
+                    <div class="text-center">
+                        <a href="liveSrivsban.html" class="btn btn-primary">View Full Score</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div id="matchesContent">
+        
+            <div class="score-box">
+                <div class="match-header d-flex justify-content-between align-items-center" 
+                     data-bs-toggle="modal" data-bs-target="#matchDetailsModalENGSA">
+                    <div class="d-flex align-items-center">
+                        <img src="https://flagcdn.com/w40/gb.png" alt="England Flag" class="flag-icon">
+                        <span class="mx-2">England</span>
+                        <strong>VS</strong>
+                        <span class="mx-2">South Africa</span>
+                        <img src="https://flagcdn.com/w40/za.png" alt="South Africa Flag" class="flag-icon">
+                    </div>
+                </div>
+                <div class="score-details">
+                    <div><strong>South Africa:</strong> 284/7 (45.2 overs)</div>
+                    <div><strong>England:</strong> Yet to Bat </div>
+                    <div><strong>Current Run Rate :</strong> 5.67</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="matchDetailsModalENGSA" tabindex="-1" aria-labelledby="matchDetailsModalLabelENGSA" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="matchDetailsModalLabelENGSA">England vs South Africa - Match Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+    
+                    <!-- Chasing Team (South Africa) Batting & Opposite Team (England) Bowling -->
+                    <div class="team-section">
+                        <h4>Batting (South Africa)</h4>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Batsman</th>
+                                    <th>Runs</th>
+                                    <th>Balls</th>
+                                    <th>4s</th>
+                                    <th>6s</th>
+                                    <th>Strike Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Quinton de Kock <br> <small>Not Out</small></td>
+                                    <td>88</td>
+                                    <td>95</td>
+                                    <td>7</td>
+                                    <td>2</td>
+                                    <td>92.6</td>
+                                </tr>
+                                <tr>
+                                    <td>Aiden Markram <br> <small>Not Out</small></td>
+                                    <td>62</td>
+                                    <td>55</td>
+                                    <td>5</td>
+                                    <td>1</td>
+                                    <td>112.7</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p><strong>Extras:</strong> 12 (5w, 3nb, 4lb)</p>
+                        <p><strong>Total:</strong> 250/6 (45 overs)</p>
+                    </div>
+    
+                    <div class="team-section">
+                        <!-- England Bowling Table -->
+                        <h4>Bowling (England)</h4>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Bowler</th>
+                                    <th>Overs</th>
+                                    <th>Maiden</th>
+                                    <th>Wickets</th>
+                                    <th>Runs</th>
+                                    <th>Economy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Jofra Archer</td>
+                                    <td>10</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>52</td>
+                                    <td>5.2</td>
+                                </tr>
+                                <tr>
+                                    <td>Chris Woakes</td>
+                                    <td>9</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>48</td>
+                                    <td>5.3</td>
+                                </tr>
+                                <tr>
+                                    <td>Reece Topley</td>
+                                    <td>9</td>
+                                    <td>0</td>
+                                    <td>48</td>
+                                    <td>1</td>
+                                    <td>5.33</td>
+                                </tr>
+                                <tr>
+                                    <td>Adil Rashid</td>
+                                    <td>10</td>
+                                    <td>0</td>
+                                    <td>2</td>
+                                    <td>60</td>
+                                    <td>6.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                    <!-- Link to View Full Score -->
+                    <div class="text-center">
+                        <a href="liveEngvsSA.html" class="btn btn-primary">View Full Score</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>   
+
+
+ <div class="container p-3 shadow bg-white rounded mb-4">
+    <h3 class="mb-3">🏏 Top Cricket Stories</h3>
+    <ul class="list-group mb-4">
+        <li class="list-group-item d-flex align-items-center">
+            <img src="images/India england 2023/21704087_18.jpg" alt="India vs England" class="me-3" width="150px" height="150px">
+            India wins the Test series against England 3-1
+        </li>
+        <li class="list-group-item d-flex align-items-center">
+            <img src="images/India england 2023/12virat1.webp" alt="Virat Kohli" class="me-3" width="150px" height="150px">
+            Virat Kohli ruled out of upcoming T20 series
+        </li>
+        <li class="list-group-item d-flex align-items-center">
+            <img src="images/England/ipl.webp" alt="IPL Auction" class="me-3"  width="150px" height="150px">
+            IPL 2025 auction set for next month
+        </li>
+    </ul>
+
+    <h3 class="mb-3">📰 Latest Cricket News</h3>
+    <div class="news-list">
+        <div class="mb-3 p-2 border rounded">
+            <strong>🚀 Rohit Sharma scores a record-breaking century</strong>
+            <p>In a stunning display, Rohit Sharma smashed a century in just 55 balls against Australia.</p>
+            <img src="images/India england 2023/images1.jpg" alt="Rohit Sharma Century" class="img-fluid rounded">
+        </div>
+        <div class="mb-3 p-2 border rounded">
+            <strong>🎯 Bumrah climbs to No.1 in ICC rankings</strong>
+            <p>Jasprit Bumrah becomes the No.1 ranked bowler in Test cricket after a stellar performance.</p>
+            <img src="images/India england 2023/images (2).jpg" alt="Bumrah ICC Rankings" class="img-fluid rounded">
+        </div>
+        <div class="mb-3 p-2 border rounded">
+            <strong>🔥 Pakistan announces T20 World Cup squad</strong>
+            <p>Pakistan has revealed their 15-member squad for the upcoming T20 World Cup.</p>
+            <iframe width="100%" height="250" src="https://youtu.be/GDZ2PI20VNk?si=c_tHDQ_A3wyJac5P" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+ <!-- Footer Section -->
+ <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <!-- About Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">About Us</h5>
+          <p>Cricket Score Site is your go-to destination for live scores, player stats, and exciting cricket updates. Whether you're a seasoned fan or a newbie, we offer comprehensive content to help you enjoy the game.</p>
+        </div>
+  
+        <!-- Quick Links Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="/" class="text-white">Home</a></li>
+            <li><a href="/scores" class="text-white">Scores</a></li>
+            <li><a href="/players" class="text-white">Players</a></li>
+            <li><a href="#newbie" class="text-white">Newbie</a></li>
+          </ul>
+        </div>
+  
+        <!-- Contact Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-envelope"></i> support@cricketscores.com</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Social Media Links -->
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <a href="https://facebook.com" class="text-white mx-2" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="https://twitter.com" class="text-white mx-2" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+          <a href="https://instagram.com" class="text-white mx-2" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+          <a href="https://youtube.com" class="text-white mx-2" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Footer Bottom -->
+    <div class="text-center py-3" style="background-color: #212529;">
+      <p>&copy; 2025 Cricket Score Site | All rights reserved</p>
+    </div>
+  </footer>
+  
+
+
+<!-- Add FontAwesome for social media icons -->
+<script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
+
+
+    
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /* Navbar Styling */
+
+        .navbar {
+        background: linear-gradient(to right, #000000, #1a1a1a);
+        padding: 18px 50px; /* Increased spacing */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .navbar-brand {
+        font-size: 24px; /* Increased font size */
+        font-weight: bold;
+        color: white !important;
+    }
+    .navbar-nav {
+        margin-left: auto; /* Push items to the right */
+    }
+    .navbar-nav .nav-item {
+        margin: 0 18px; /* More spacing between items */
+    }
+    .navbar-nav .nav-link {
+        font-size: 20px; /* Bigger font size */
+        color: white !important;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+    }
+    .navbar-nav .nav-link:hover {
+        color: #ffc107 !important; /* Gold hover effect */
+    }
+
+    /* Tab Navigation */
+    .nav-tabs {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+    }
+    .nav-tabs .nav-link {
+        background: #202A44; /* Dark blue tab */
+        color: white;
+        border-radius: 8px;
+        margin: 3px;
+        padding: 12px 18px; /* Increased padding */
+        font-size: 18px; /* Bigger font size */
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+    .nav-tabs .nav-link:hover {
+        background: #ffc107; /* Gold hover effect */
+        color: black;
+    }
+    .nav-tabs .nav-link.active {
+        background: #ffc107; /* Active tab */
+        color: black;
+    }
+
+    .dropdown-menu {
+            background-color: #202A44; /* Dark blue dropdown */
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown-item {
+            color: white !important;
+            font-weight: bold;
+        }
+        .dropdown-item:hover {
+            background-color: #ffc107 !important;
+            color: black !important;
+        }
+
+
+        
+        /* Tab Content */
+        .tab-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+       
+
+        
+        
+    .card-hover {
+        transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-15px) scale(1.05);
+        box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+        background-color: #f4f4f4; /* Light background color change on hover */
+    }
+
+    .card-header {
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #003366;
+        color: white;
+        text-align: center;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .card-body {
+        font-size: 16px;
+        padding: 20px;
+    }
+
+    .col-md-4 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .row {
+        margin-top: 20px;
+    }
+
+    </style>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Cricket Live</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="responsiveSchedule.html">Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="responsiveArchives.html">Archives</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="rankingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ranking
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="rankingDropdown">
+                            <li><a class="dropdown-item" href="rankingMen.html">ICC Ranking - Men</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="teamsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Teams
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="teamsDropdown">
+                            <li><a class="dropdown-item" href="Tindia.html">India</a></li>
+                            <li><a class="dropdown-item" href="Taustralia.html">Australia</a></li>
+                            <li><a class="dropdown-item" href="Tengland.html">England</a></li>
+                            <li><a class="dropdown-item" href="Tsouthafric.html">South Africa</a></li>
+                            <li><a class="dropdown-item" href="TsriLanka.html">Sri Lanka</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="newbiee.html">Newbiee</a></li>
+      
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+      
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+       <!-- Tabs for Sections -->
+       <div class="container mt-4">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#schedule">Schedule</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#players">Players</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#photos">Photos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#stats">Stats</a>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-3">
+                <div class="tab-pane fade show active" id="home">
+                    <h2>🏏 Top Stories</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="images/South africa vs india/file-20240627-17-dkvaa9.avif" class="img-fluid rounded" alt="Top Story">
+                        </div>
+                        <div class="col-md-6">
+                            <h4>South Africa Triumphs Over India in Thrilling Encounter</h4>
+                            <p>South Africa secured a thrilling last-over victory against India in a high-pressure match.</p>
+                            <a class="btn btn-link" data-bs-toggle="collapse" href="#moreNewsSA" role="button" aria-expanded="false" aria-controls="moreNewsSA">
+                                Read More
+                            </a>
+                            <div class="collapse mt-2" id="moreNewsSA">
+                                <p>Kagiso Rabada and Anrich Nortje dominated the bowling, while Quinton de Kock played a crucial role in the run chase.</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <h2 class="mt-4">📰 Top News</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Kagiso Rabada:</strong> Breaks into the top 3 ICC Test bowlers.</li>
+                        <li class="list-group-item"><strong>Quinton de Kock:</strong> Announces return for the upcoming ODI series.</li>
+                        <li class="list-group-item"><strong>South Africa:</strong> Prepares for the ICC T20 World Cup.</li>
+                    </ul>
+            
+                    <h2 class="mt-4">📸 Latest Photos</h2>
+                    <div class="row">
+                        <div class="col-md-4"><img src="images/South africa vs india/images (2).jpg" class="img-fluid rounded" alt="Photo 1"></div>
+                        <div class="col-md-4"><img src="images/South africa vs india/images.jpg" class="img-fluid rounded" alt="Photo 2"></div>
+                        <div class="col-md-4"><img src="images/South Africa world tour/images.jpg" class="img-fluid rounded" alt="Photo 3"></div>
+                    </div>
+            
+                    <h2 class="mt-4">🎥 Latest Videos</h2>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="https://youtu.be/YqKYpgZ9FWU?si=1i7v5Sz4Dhld3Fpw" target="_blank">
+                                <img src="images/South Africa world tour/images (5).jpg" 
+                                    alt="Match Highlights" 
+                                    style="width: 100%; max-width: 500px; border-radius: 10px; margin-top: 15px;">
+                            </a>                  
+                       </div>
+                        <div class="col-md-4">
+                            <a href="https://youtu.be/YqKYpgZ9FWU?si=1i7v5Sz4Dhld3Fpw" target="_blank">
+                                <img src="images/South Africa world tour/353594.6.webp" 
+                                    alt="Match Highlights" 
+                                    style="width: 100%; max-width: 500px; border-radius: 10px; margin-top: 15px;">
+                            </a>          
+                       </div>
+                        <div class="col-md-4">
+                            <a href="https://youtu.be/YqKYpgZ9FWU?si=1i7v5Sz4Dhld3Fpw" target="_blank">
+                                <img src="images/South Africa world tour/111370263.webp" 
+                                    alt="Match Highlights" 
+                                    style="width: 100%; max-width: 500px; border-radius: 10px; margin-top: 15px;">
+                            </a> 
+                        </div>
+                    </div>
+                </div>
+           
+
+            <div class="tab-pane fade" id="schedule">
+                <h2>📅 Team South Africa Match Schedule</h2>
+                <table class="table table-striped mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Date</th>
+                            <th>Opponent</th>
+                            <th>Venue</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>20th Feb 2025</td>
+                            <td>England</td>
+                            <td>Newlands, Cape Town</td>
+                            <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#matchSA1">View Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>25th Feb 2025</td>
+                            <td>West Indies</td>
+                            <td>Kensington Oval, Barbados</td>
+                            <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#matchSA2">View Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>1st Mar 2025</td>
+                            <td>Bangladesh</td>
+                            <td>SuperSport Park, Centurion</td>
+                            <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#matchSA3">View Details</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+                <!-- Match 1 Modal -->
+                <div class="modal fade" id="matchSA1" tabindex="-1" aria-labelledby="matchSA1Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="matchSA1Label">Match Details: South Africa vs England</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Date:</strong> 20th Feb 2025</p>
+                                <p><strong>Venue:</strong> Newlands, Cape Town</p>
+                                <p><strong>Format:</strong> Test Match</p>
+                                <p><strong>Match Time:</strong> 11:00 AM SAST</p>
+                                <p><strong>Weather Forecast:</strong> Sunny, 26°C</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Match 2 Modal -->
+                <div class="modal fade" id="matchSA2" tabindex="-1" aria-labelledby="matchSA2Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="matchSA2Label">Match Details: South Africa vs West Indies</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Date:</strong> 25th Feb 2025</p>
+                                <p><strong>Venue:</strong> Kensington Oval, Barbados</p>
+                                <p><strong>Format:</strong> ODI</p>
+                                <p><strong>Match Time:</strong> 3:00 PM AST</p>
+                                <p><strong>Weather Forecast:</strong> Cloudy, 28°C</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Match 3 Modal -->
+                <div class="modal fade" id="matchSA3" tabindex="-1" aria-labelledby="matchSA3Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="matchSA3Label">Match Details: South Africa vs Bangladesh</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Date:</strong> 1st Mar 2025</p>
+                                <p><strong>Venue:</strong> SuperSport Park, Centurion</p>
+                                <p><strong>Format:</strong> T20</p>
+                                <p><strong>Match Time:</strong> 6:00 PM SAST</p>
+                                <p><strong>Weather Forecast:</strong> Clear skies, 22°C</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="players">
+                <h2 class="text-center">🏏 Team South Africa Players</h2>
+            
+                <!-- Batsmen Section -->
+                <h3 class="mt-4">🦸‍♂️ Batsmen</h3>
+                <div class="row">
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/South Africa/bavuma.png" class="rounded-circle" width="80" height="80" alt="Temba Bavuma">
+                        <span class="ms-3">Temba Bavuma</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/South Africa/markram.png" class="rounded-circle" width="80" height="80" alt="Aiden Markram">
+                        <span class="ms-3">Aiden Markram</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/South Africa/de kock.png" class="rounded-circle" width="80" height="80" alt="Quinton de Kock">
+                        <span class="ms-3">Quinton de Kock</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/South Africa/miller.png" class="rounded-circle" width="80" height="80" alt="miller">
+                        <span class="ms-3">David Miller</span>
+                    </div>
+                </div>
+            
+                <!-- Bowlers Section -->
+                <h3 class="mt-4">🎯 Bowlers</h3>
+                <div class="row">
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/South Africa/rabada.png" class="rounded-circle" width="80" height="80" alt="Kagiso Rabada">
+                        <span class="ms-3">Kagiso Rabada</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/South Africa/anrich.png" class="rounded-circle" width="80" height="80" alt="Anrich Nortje">
+                        <span class="ms-3">Anrich Nortje</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/South Africa/tabraiz.png" class="rounded-circle" width="80" height="80" alt="Tabraiz Shamsi">
+                        <span class="ms-3">Tabraiz Shamsi</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/South Africa/ngidi.png" class="rounded-circle" width="80" height="80" alt="nigidi">
+                        <span class="ms-3">Lungi Nigidi</span>
+                    </div>
+                </div>
+            
+                <!-- All-rounders Section -->
+                <h3 class="mt-4">🔥 All-rounders</h3>
+                <div class="row">
+                    <div class="col-md-4 d-flex align-items-center mb-3">
+                        <img src="images/South Africa/miller.png" class="rounded-circle" width="80" height="80" alt="keshav">
+                        <span class="ms-3">Keshav Maharaj</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-3">
+                        <img src="images/South Africa/dwain.png" class="rounded-circle" width="80" height="80" alt="Dwaine Pretorius">
+                        <span class="ms-3">Dwaine Pretorius</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-3">
+                        <img src="images/South Africa/wayne.png" class="rounded-circle" width="80" height="80" alt="Wayne Parnell">
+                        <span class="ms-3">Wayne Parnell</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="photos">
+                <h2 class="text-center">📸 South Africa Cricket Moments</h2>
+            
+                <!-- South Africa in World Cup -->
+                <div class="mt-4">
+                    <h3>🏆 South Africa's Journey in World Cups</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <img src="images/South Africa world tour/111370263.webp" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <img src="images/South Africa world tour/353594.6.webp" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <img src="images/South Africa world tour/images.jpg" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- South Africa vs India Classic Battles -->
+                <div class="mt-4">
+                    <h3>🔥 South Africa vs India Classic Battles</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <img src="images/South africa vs india/file-20240627-17-dkvaa9.avif" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <img src="images/South africa vs india/images (2).jpg" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <img src="images/South africa vs india/images.jpg" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <div class="tab-pane fade" id="stats">
+                <h2 class="text-center">📊 Team South Africa Stats</h2>
+            
+                <!-- Team Stats Table -->
+                <div class="container p-3 shadow bg-white rounded mb-4">
+                    <h3>🏏 Overall Team Stats</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Matches Played</td>
+                                <td>320</td>
+                            </tr>
+                            <tr>
+                                <td>Wins</td>
+                                <td>185</td>
+                            </tr>
+                            <tr>
+                                <td>Losses</td>
+                                <td>120</td>
+                            </tr>
+                            <tr>
+                                <td>Draws</td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <td>Win Percentage</td>
+                                <td>57.8%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            
+                <!-- Recent Performance -->
+                <div class="mt-4">
+                    <h3>🔥 Recent Performance</h3>
+                    <div class="row text-center">
+                        <!-- Last 5 Matches Card -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card card-hover">
+                                <div class="card-header">
+                                    🏆 Last 5 Matches
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        <li>South Africa vs Australia: Lost</li>
+                                        <li>South Africa vs England: Won</li>
+                                        <li>South Africa vs India: Won</li>
+                                        <li>South Africa vs Pakistan: Won</li>
+                                        <li>South Africa vs New Zealand: Lost</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Batting Average Card -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card card-hover">
+                                <div class="card-header">
+                                    ⚡ Batting Average
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        <li>Quinton de Kock: 48.2</li>
+                                        <li>Rassie van der Dussen: 45.5</li>
+                                        <li>Aiden Markram: 42.9</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Bowling Stats Card -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card card-hover">
+                                <div class="card-header">
+                                    🎯 Bowling Stats
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        <li>Kagiso Rabada: 3.3 wickets per match</li>
+                                        <li>Anrich Nortje: 3.0 wickets per match</li>
+                                        <li>Tabraiz Shamsi: 2.6 wickets per match</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+
+         <!-- Footer Section -->
+ <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <!-- About Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">About Us</h5>
+          <p>Cricket Score Site is your go-to destination for live scores, player stats, and exciting cricket updates. Whether you're a seasoned fan or a newbie, we offer comprehensive content to help you enjoy the game.</p>
+        </div>
+  
+        <!-- Quick Links Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="/" class="text-white">Home</a></li>
+            <li><a href="/scores" class="text-white">Scores</a></li>
+            <li><a href="/players" class="text-white">Players</a></li>
+            <li><a href="#newbie" class="text-white">Newbie</a></li>
+          </ul>
+        </div>
+  
+        <!-- Contact Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-phone-alt"></i> +1 234 567 890</li>
+            <li><i class="fas fa-envelope"></i> support@cricketscores.com</li>
+            <li><i class="fas fa-map-marker-alt"></i> 123 Cricket Lane, Cricket City, Country</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Social Media Links -->
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <a href="https://facebook.com" class="text-white mx-2" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="https://twitter.com" class="text-white mx-2" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+          <a href="https://instagram.com" class="text-white mx-2" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+          <a href="https://youtube.com" class="text-white mx-2" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Footer Bottom -->
+    <div class="text-center py-3" style="background-color: #212529;">
+      <p>&copy; 2025 Cricket Score Site | All rights reserved</p>
+    </div>
+  </footer>
+  
+
+    
+</body>
+</html>

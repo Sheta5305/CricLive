@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Details</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /* Navbar Styling */
+        .navbar {
+        background: linear-gradient(to right, #000000, #1a1a1a);
+        padding: 18px 50px; /* Increased spacing */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .navbar-brand {
+        font-size: 24px; /* Increased font size */
+        font-weight: bold;
+        color: white !important;
+    }
+    .navbar-nav {
+        margin-left: auto; /* Push items to the right */
+    }
+    .navbar-nav .nav-item {
+        margin: 0 18px; /* More spacing between items */
+    }
+    .navbar-nav .nav-link {
+        font-size: 20px; /* Bigger font size */
+        color: white !important;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+    }
+    .navbar-nav .nav-link:hover {
+        color: #ffc107 !important; /* Gold hover effect */
+    }
+
+    /* Tab Navigation */
+    .nav-tabs {
+    margin-top: 20px;
+    overflow-x: auto; /* Allow scrolling on small screens */
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+    border-bottom: none; /* Removed the yellow line */
+}
+
+        
+        
+        .nav-tabs .nav-link {
+            background: #202A44;
+            color: white;
+            border-radius: 8px;
+            margin: 3px;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-tabs .nav-link:hover {
+            background: #ffc107;
+            color: black;
+        }
+        .nav-tabs .nav-link.active {
+            background: #ffc107;
+            color: black;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    .dropdown-menu {
+            background-color: #202A44; /* Dark blue dropdown */
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown-item {
+            color: white !important;
+            font-weight: bold;
+        }
+        .dropdown-item:hover {
+            background-color: #ffc107 !important;
+            color: black !important;
+        }
+
+        /* General Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        /* Header Styling */
+        th {
+            background-color: #202A44;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+        }
+
+        /* Row Styling */
+        td {
+            padding: 12px;
+            color: #333;
+        }
+
+        /* Alternating Row Colors */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        /* Hover Effect */
+        tr:hover {
+            background-color: #e0f2ff;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav .nav-item {
+                text-align: center;
+                margin-bottom: 5px;
+            }
+            .nav-tabs {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            .table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+
+
+        .team-section {
+                        margin-bottom: 30px;
+                        padding: 15px;
+                        border-radius: 8px;
+                        background: #f9f9f9;
+                        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+                    }
+                
+                    .player-grid, .staff-grid {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 15px;
+                        justify-content: start;
+                    }
+                
+                    .player {
+                        text-align: center;
+                        width: 120px;
+                    }
+                
+                    .player img {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 3px solid #ddd;
+                    }
+                
+                    h2, h3, h4 {
+                        color: #202A44;
+                        margin-bottom: 10px;
+                    }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Cricket Live</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="responsiveSchedule.html">Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="responsiveArchives.html">Archives</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="rankingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ranking
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="rankingDropdown">
+                            <li><a class="dropdown-item" href="rankingMen.html">ICC Ranking - Men</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="teamsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Teams
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="teamsDropdown">
+                            <li><a class="dropdown-item" href="Tindia.html">India</a></li>
+                            <li><a class="dropdown-item" href="Taustralia.html">Australia</a></li>
+                            <li><a class="dropdown-item" href="Tengland.html">England</a></li>
+                            <li><a class="dropdown-item" href="Tsouthafric.html">South Africa</a></li>
+                            <li><a class="dropdown-item" href="TsriLanka.html">Sri Lanka</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="newbiee.html">Newbiee</a></li>
+      
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+      
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tabs -->
+    <div class="container-md mt-3">
+        <ul class="nav nav-tabs" id="matchTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#live" role="tab">Live</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#scorecard" role="tab">Scorecard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#squads" role="tab">Squads</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#news" role="tab">News</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="container-md mt-4 tab-content">
+        
+        <!-- Live Section -->
+<div class="tab-pane fade show active" id="live">
+
+    <!-- Scoreboard Section -->
+    <div class="container p-3 shadow bg-white rounded mb-4">
+        <h4 class="mb-3 text-center">Live Match</h4>
+        <p class="mb-3 text-center"><strong>Current Run Rate:</strong> 8.3</p>
+        <p class="mb-3 text-center"><strong>Required Run Rate:</strong> 10.5</p>
+
+        
+        <!-- Match Details -->
+       
+        <!-- Team Scores -->
+        <div class="team-scores d-flex justify-content-around align-items-center p-3">
+            <div class="team">
+                <h5><img src="https://flagcdn.com/w40/in.png" alt="India Flag" class="flag-icon">
+                    India</h5>
+                <p><strong>167-5</strong> (19.4 ov)</p>
+            </div>
+            <div class="team">
+                <h5><img src="https://flagcdn.com/w40/au.png" alt="Australia Flag" class="flag-icon">
+                    Australia</h5>
+                <p><strong>170-6</strong> (20 ov)</p>
+            </div>
+        </div>
+
+        <!-- Live Batsmen -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Batsman</th>
+                    <th>R</th>
+                    <th>B</th>
+                    <th>4s</th>
+                    <th>6s</th>
+                    <th>SR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Virat Kohli</td>
+                    <td>60</td>
+                    <td>45</td>
+                    <td>6</td>
+                    <td>3</td>
+                    <td>150.0</td>
+                </tr>
+                <tr>
+                    <td>Suryakumar Yadav</td>
+                    <td>45</td>
+                    <td>25</td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>180.0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Bowler with wickets -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Bowler</th>
+                    <th>O</th>
+                    <th>R</th>
+                    <th>W</th>
+                    <th>Economy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Josh Hazlewood</td>
+                    <td>4</td>
+                    <td>35</td>
+                    <td>2</td>
+                    <td>8.75</td>
+                </tr>
+                <tr>
+                    <td>Mitchell Starc</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>40</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Aaron Finch</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>28</td>
+                    <td>2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Live Commentary Section -->
+    <div class="container p-3 shadow bg-white rounded mb-4">
+        <h4 class="mb-3 text-center">🎙 Live Commentary</h4>
+        <div class="commentary-box" style="max-height: 300px; overflow-y: auto; padding: 10px; border: 1px solid #ccc; background: white;">
+            <p><strong>19.4</strong> – Dot ball. Pressure on India! </p>
+            <p><strong>19.3</strong> – Full toss outside off, Kohli drives it to cover for a single.</p>
+            <p style="color:blue; font-weight: bold;"><strong>19.2</strong> – SIX! Over long-on! Kohli smashes it into the stands.</p>
+            <p><strong>19.1</strong> – Yorker from Hazlewood, Suryakumar digs it out for a single.</p>
+            <p style="color: green; font-weight: bold;"><strong>18.6</strong> – FOUR! Kholi hits the boundary and relesase the pressure</p>
+        </div>
+    </div>
+
+</div>
+
+
+        <!-- Scorecard Section -->
+       
+            <div class="tab-pane fade" id="scorecard">
+                    
+                <!-- Match Result / Status -->
+                <h6 style="text-align: left; color: red; margin-bottom: 30px;">India needs 3 runs in 2 balls</h6>
+            
+                <!-- Australia Innings (Batting First) -->
+                <div class="innings">
+                    <div style="background-color: yellow; color: green; padding: 8px; font-size: 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+                        <span>🔹 Australia Innings</span>
+                        <span>170-6 (20 ov)</span>
+                    </div>
+            
+                   
+                        <table>
+                            <tr>
+                                <th>Batter</th>
+                                <th>Dismissal</th>
+                                <th>R</th>
+                                <th>B</th>
+                                <th>4s</th>
+                                <th>6s</th>
+                                <th>SR</th>
+                            </tr>
+                            <tr>
+                                <td>David Warner</td>
+                                <td>c Kohli b Bumrah</td>
+                                <td>52</td>
+                                <td>38</td>
+                                <td>5</td>
+                                <td>2</td>
+                                <td>136.8</td>
+                            </tr>
+                            <tr>
+                                <td>Travis Head</td>
+                                <td>c Rahul b Siraj</td>
+                                <td>30</td>
+                                <td>22</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>136.3</td>
+                            </tr>
+                            <tr>
+                                <td>Steve Smith</td>
+                                <td>lbw b Jadeja</td>
+                                <td>27</td>
+                                <td>20</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>135.0</td>
+                            </tr>
+                            <tr>
+                                <td>Glenn Maxwell</td>
+                                <td>b Kuldeep</td>
+                                <td>18</td>
+                                <td>12</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>150.0</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Extras</strong></td>
+                                <td colspan="6"><strong>15 (nb 2, w 7, b 4, lb 2)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total</strong></td>
+                                <td colspan="6"><strong>170-6 (20 overs)</strong></td>
+                            </tr>
+                        </table>
+                    
+                    <p><strong>Fall of Wickets:</strong> 45-1 (Head), 90-2 (Smith), 110-3 (Maxwell), 138-4 (Warner), 155-5 (Stoinis), 165-6 (Green)</p>
+                    <p><strong>Did Not Bat:</strong> Pat Cummins, Mitchell Starc</p>
+                </div>
+            
+                <!-- India Bowling -->
+                <div class="bowling">
+                    <table style="margin-bottom: 40px;">
+                        <tr>
+                            <th>Bowler</th>
+                            <th>O</th>
+                            <th>M</th>
+                            <th>R</th>
+                            <th>W</th>
+                            <th>Economy</th>
+                        </tr>
+                        <tr>
+                            <td>Jasprit Bumrah</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>32</td>
+                            <td>1</td>
+                            <td>8.00</td>
+                        </tr>
+                        <tr>
+                            <td>Mohammed Siraj</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>35</td>
+                            <td>1</td>
+                            <td>8.75</td>
+                        </tr>
+                        <tr>
+                            <td>Ravindra Jadeja</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>28</td>
+                            <td>1</td>
+                            <td>7.00</td>
+                        </tr>
+                        <tr>
+                            <td>Kuldeep Yadav</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>38</td>
+                            <td>1</td>
+                            <td>9.50</td>
+                        </tr>
+                    </table>
+                </div>
+            
+                <!-- India Innings (Chasing) -->
+                <div class="innings">
+                    <div style="background-color: blue;color: rgb(255, 140, 0); padding: 8px; font-size: 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+                        <span>🔹 India Innings</span>
+                        <span>167-5 (19.4 ov)</span>
+                    </div>
+            
+                    <table>
+                        <tr>
+                            <th>Batter</th>
+                            <th>Dismissal</th>
+                            <th>R</th>
+                            <th>B</th>
+                            <th>4s</th>
+                            <th>6s</th>
+                            <th>SR</th>
+                        </tr>
+                        <tr>
+                            <td>Virat Kohli</td>
+                            <td>not out</td>
+                            <td>60</td>
+                            <td>45</td>
+                            <td>6</td>
+                            <td>3</td>
+                            <td>150.0</td>
+                        </tr>
+                        <tr>
+                            <td>Suryakumar Yadav</td>
+                            <td>not out</td>
+                            <td>45</td>
+                            <td>25</td>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>180.0</td>
+                        </tr>
+                        <tr>
+                            <td>Rohit Sharma</td>
+                            <td>b Finch</td>
+                            <td>20</td>
+                            <td>15</td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>133.3</td>
+                        </tr>
+                        <tr>
+                            <td>Shubman Gill</td>
+                            <td>c Smith b Hazlewood</td>
+                            <td>10</td>
+                            <td>8</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>125.0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Extras</strong></td>
+                            <td colspan="6"><strong>12 (nb 1, w 6, b 3, lb 2)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total</strong></td>
+                            <td colspan="6"><strong>167-5 (19.4 overs)</strong></td>
+                        </tr>
+                    </table>
+                    <p><strong>Fall of Wickets:</strong> 30-1 (Rohit), 65-2 (Gill), 100-3 (Iyer), 120-4 (Rahul), 140-5 (Pandya)</p>
+                </div>
+            
+                <!-- Australia Bowling -->
+                <div class="bowling">
+                    <table>
+                        <tr>
+                            <th>Bowler</th>
+                            <th>O</th>
+                            <th>M</th>
+                            <th>R</th>
+                            <th>W</th>
+                            <th>Economy</th>
+                        </tr>
+                        <tr>
+                            <td>Mitchell Starc</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>40</td>
+                            <td>1</td>
+                            <td>10.00</td>
+                        </tr>
+                        <tr>
+                            <td>Josh Hazlewood</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>35</td>
+                            <td>2</td>
+                            <td>8.75</td>
+                        </tr>
+                        <tr>
+                            <td>Aaron Finch</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>28</td>
+                            <td>2</td>
+                            <td>14.00</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Match Info Section -->
+<div class="container p-3 shadow bg-white rounded mb-4">
+    <h4 class="text-center mb-3" style="color: #f0ad4e;">📍 Match Information</h4>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>Match Date</th>
+                    <td>February 21, 2025</td>
+                </tr>
+                <tr>
+                    <th>Toss Winner</th>
+                    <td>Australia (Elected to Bat)</td>
+                </tr>
+                <tr>
+                    <th>Venue</th>
+                    <td>M. Chinnaswamy Stadium, Bengaluru</td>
+                </tr>
+                <tr>
+                    <th>Umpires</th>
+                    <td>Richard Illingworth, Nitin Menon</td>
+                </tr>
+                <tr>
+                    <th>Third Umpire</th>
+                    <td>Rod Tucker</td>
+                </tr>
+                <tr>
+                    <th>Match Referee</th>
+                    <td>Javagal Srinath</td>
+                </tr>
+                <tr>
+                    <th>Pitch Report</th>
+                    <td>A <b>batting-friendly pitch</b> with good bounce. Expect high scores and some assistance for spinners in the second innings.</td>
+                </tr>
+                <tr>
+                    <th>Weather</th>
+                    <td>Clear skies, 28°C, no rain expected.</td>
+                </tr>
+                
+              
+            </tbody>
+        </table>
+    </div>
+</div>
+
+                
+</div>
+
+            <!-- New Squad Section (India vs Australia) -->
+<div class="tab-pane fade" id="squads">
+    <h2>🏏 Squads - India vs Australia</h2>
+
+    <!-- India Squad -->
+    <div class="team-section">
+        <h3><img src="https://flagcdn.com/w40/in.png" alt="India Flag" class="flag-icon"> India Squad</h3>
+
+        <!-- Playing XI -->
+        <h4 style="margin-top: 30px;">🔥 Playing XI</h4>
+        <div class="player-grid">
+            <div class="player">
+                <img src="images/India/Rohit.png" alt="Rohit Sharma">
+                <p><strong>Rohit Sharma</strong> (C)</p>
+            </div>
+            <div class="player">
+                <img src="images/India/Gill.png" alt="Shubman Gill">
+                <p>Shubman Gill</p>
+            </div>
+            <div class="player">
+                <img src="images/India/Kohli.png" alt="Virat Kohli">
+                <p>Virat Kohli</p>
+            </div>
+            <div class="player">
+                <img src="images/India/Yadav.png" alt="Suryakumar Yadav">
+                <p>Suryakumar Yadav</p>
+            </div>
+            <div class="player">
+                <img src="images/India/Hardik.png" alt="Hardik Pandya">
+                <p>Hardik Pandya</p>
+            </div>
+            <div class="player">
+                <img src="images/India/Ishan.png" alt="Ishan Kishan">
+                <p>Ishan Kishan (WK)</p>
+            </div>
+            <div class="player">
+                <img src="images/India/Jadeja.png" alt="Ravindra Jadeja">
+                <p>Ravindra Jadeja</p>
+            </div>
+            <div class="player">
+                <img src="images/India/kuldeep.png" alt="Kuldeep Yadav">
+                <p>Kuldeep Yadav</p>
+            </div>
+            <div class="player">
+                <img src="images/India/Shami.png" alt="Mohammed Shami">
+                <p>Mohammed Shami</p>
+            </div>
+            <div class="player">
+                <img src="images/India/siraj.png" alt="Mohammed Siraj">
+                <p>Mohammed Siraj</p>
+            </div>
+            <div class="player">
+                <img src="images/India/Bumrah.png" alt="Jasprit Bumrah">
+                <p>Jasprit Bumrah</p>
+            </div>
+        </div>
+
+        <!-- Bench -->
+        <h4>🛋️ Bench</h4>
+        <div class="player-grid">
+            <div class="player">
+                <img src="images/India/axar.png" alt="Axar Patel">
+                <p>Axar Patel</p>
+            </div>
+            <div class="player">
+                <img src="images/India/rahul.png" alt="KL Rahul">
+                <p>KL Rahul</p>
+            </div>
+        </div>
+
+        <!-- Support Staff -->
+        <h4>🧢 Support Staff</h4>
+        <div class="staff-grid">
+            <div class="player">
+                <img src="images/South Africa/Coach 1.webp" alt="Rahul Dravid">
+                <p><strong>Coach:</strong> Rahul Dravid</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/Coach 3.png" alt="Physio">
+                <p><strong>Physio:</strong> Nitin Patel</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Australia Squad -->
+    <div class="team-section">
+        <h3><img src="https://flagcdn.com/w40/au.png" alt="Australia Flag" class="flag-icon"> 
+            Australia Squad</h3>
+
+        <!-- Playing XI -->
+        <h4 class="margin-top: 30px;";>🔥 Playing XI</h4>
+        <div class="player-grid">
+            <div class="player">
+                <img src="images/Australia/warner.png" alt="David Warner">
+                <p><strong>David Warner</strong> (C)</p>
+            </div>
+            <div class="player">
+                <img src="images/Australia/travis-head.png" alt="Travis Head">
+                <p>Travis Head</p>
+            </div>
+            <div class="player">
+                <img src="images/Australia/smith.jpg" alt="Steve Smith">
+                <p>Steve Smith</p>
+            </div>
+            <div class="player">
+                <img src="images/Australia/Glenn-Maxwell.webp" alt="Glenn Maxwell">
+                <p>Glenn Maxwell</p>
+            </div>
+            <div class="player">
+                <img src="images/Australia/Marce.png" alt="Mitchell Marsh">
+                <p>Mitchell Marsh</p>
+            </div>
+            <div class="player">
+                <img src="images/Australia/Alex.png" alt="Alex Carey">
+                <p>Alex Carey (WK)</p>
+            </div>
+            <div class="player">
+                <img src="images/Australia/Stark.avif" alt="Mitchell Starc">
+                <p>Mitchell Starc</p>
+            </div>
+            <div class="player">
+                <img src="images/Australia/Pat.png" alt="Pat Cummins">
+                <p>Pat Cummins</p>
+            </div>
+            <div class="player">
+                <img src="images/Australia/Zampa.png" alt="Adam Zampa">
+                <p>Adam Zampa</p>
+            </div>
+            <div class="player">
+                <img src="images/Australia/Josh.png" alt="Josh Hazlewood">
+                <p>Josh Hazlewood</p>
+            </div>
+            <div class="player">
+                <img src="images/Australia/Stoinic.png" alt="Marcus Stoinis">
+                <p>Marcus Stoinis</p>
+            </div>
+        </div>
+
+        <!-- Bench -->
+        <h4>🛋️ Bench</h4>
+        <div class="player-grid">
+            <div class="player">
+                <img src="images/Australia/Nathan.png" alt="Nathan Ellis">
+                <p>Nathan Ellis</p>
+            </div>
+            <div class="player">
+                <img src="images/Australia/Green.png" alt="Cameron Green">
+                <p>Cameron Green</p>
+            </div>
+        </div>
+
+        <!-- Support Staff -->
+        <h4>🧢 Support Staff</h4>
+        <div class="staff-grid">
+            <div class="player">
+                <img src="images/South Africa/Coach 1.webp" alt="Andrew McDonald">
+                <p><strong>Coach:</strong> Andrew McDonald</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/Coach 3.png" alt="Physio">
+                <p><strong>Physio:</strong> Alex Kountouris</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+          <!-- News Section (India vs Australia) -->
+<div class="tab-pane fade" id="news">
+    <h2>📰 Latest News - India vs Australia</h2>
+
+    <!-- News Article 1 -->
+    <div class="news-article">
+        <img src="images/India england 2023/images (1).jpg" alt="Rohit Sharma Century" style="margin-top: 30px;margin-bottom: 30px;height: 600px; width: 800px;">
+        <div class="news-content">
+            <h3>🚀 Rohit Sharma Smashes Century in Style!</h3>
+            <p>Indian skipper Rohit Sharma led from the front with a blistering century against Australia, guiding India to a strong position in the match. His aggressive approach put the Aussie bowlers under pressure.</p>
+            <a href="#">Read More</a>
+        </div>
+    </div>
+
+    <!-- News Article 2 -->
+    <div class="news-article">
+        <img src="images/T20 Australia/download.jpg" alt="Mitchell Starc Bowling" style="margin-top: 30px;margin-bottom: 30px; height: 600px; width: 800px;">
+        <div class="news-content">
+            <h3>🔥 Mitchell Starc’s 5-Wicket Haul Shakes India!</h3>
+            <p>Australian pacer Mitchell Starc destroyed India’s top order with an incredible five-wicket haul, keeping the match in balance. Can India recover?</p>
+            <a href="#">Read More</a>
+        </div>
+    </div>
+
+    <!-- News Article 3 -->
+    <div class="news-article">
+        <img src="images/India england 2023/12virat1.webp" alt="Virat Kohli Post Match" style="margin-top: 30px; margin-bottom: 30px; height: 600px; width: 800px;">
+        <div class="news-content">
+            <h3>🎙️ Virat Kohli Reacts After Close Finish</h3>
+            <p>“It was a thrilling game, and the crowd was electric. These are the matches we live for!” said Kohli in his post-match interview.</p>
+            <a href="#">Read More</a>
+        </div>
+    </div>
+</div>
+
+
+            
+        
+    </div>
+
+     <!-- Footer Section -->
+ <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <!-- About Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">About Us</h5>
+          <p>Cricket Score Site is your go-to destination for live scores, player stats, and exciting cricket updates. Whether you're a seasoned fan or a newbie, we offer comprehensive content to help you enjoy the game.</p>
+        </div>
+  
+        <!-- Quick Links Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="/" class="text-white">Home</a></li>
+            <li><a href="/scores" class="text-white">Scores</a></li>
+            <li><a href="/players" class="text-white">Players</a></li>
+            <li><a href="#newbie" class="text-white">Newbie</a></li>
+          </ul>
+        </div>
+  
+        <!-- Contact Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-phone-alt"></i> +1 234 567 890</li>
+            <li><i class="fas fa-envelope"></i> support@cricketscores.com</li>
+            <li><i class="fas fa-map-marker-alt"></i> 123 Cricket Lane, Cricket City, Country</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Social Media Links -->
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <a href="https://facebook.com" class="text-white mx-2" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="https://twitter.com" class="text-white mx-2" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+          <a href="https://instagram.com" class="text-white mx-2" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+          <a href="https://youtube.com" class="text-white mx-2" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Footer Bottom -->
+    <div class="text-center py-3" style="background-color: #212529;">
+      <p>&copy; 2025 Cricket Score Site | All rights reserved</p>
+    </div>
+  </footer>
+  
+
+
+</body>
+</html>

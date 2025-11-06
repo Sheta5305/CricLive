@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /* Navbar Styling */
+        .navbar {
+        background: linear-gradient(to right, #000000, #1a1a1a);
+        padding: 18px 50px; /* Increased spacing */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .navbar-brand {
+        font-size: 24px; /* Increased font size */
+        font-weight: bold;
+        color: white !important;
+    }
+    .navbar-nav {
+        margin-left: auto; /* Push items to the right */
+    }
+    .navbar-nav .nav-item {
+        margin: 0 18px; /* More spacing between items */
+    }
+    .navbar-nav .nav-link {
+        font-size: 20px; /* Bigger font size */
+        color: white !important;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+    }
+    .navbar-nav .nav-link:hover {
+        color: #ffc107 !important; /* Gold hover effect */
+    }
+
+    /* Tab Navigation */
+    .nav-tabs {
+    margin-top: 20px;
+    overflow-x: auto; /* Allow scrolling on small screens */
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+    border-bottom: none; /* Removed the yellow line */
+}
+
+        
+        
+        .nav-tabs .nav-link {
+            background: #202A44;
+            color: white;
+            border-radius: 8px;
+            margin: 3px;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-tabs .nav-link:hover {
+            background: #ffc107;
+            color: black;
+        }
+        .nav-tabs .nav-link.active {
+            background: #ffc107;
+            color: black;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    .dropdown-menu {
+            background-color: #202A44; /* Dark blue dropdown */
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown-item {
+            color: white !important;
+            font-weight: bold;
+        }
+        .dropdown-item:hover {
+            background-color: #ffc107 !important;
+            color: black !important;
+        }
+
+        /* General Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        /* Header Styling */
+        th {
+            background-color: #202A44;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+        }
+
+        /* Row Styling */
+        td {
+            padding: 12px;
+            color: #333;
+        }
+
+        /* Alternating Row Colors */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        /* Hover Effect */
+        tr:hover {
+            background-color: #e0f2ff;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav .nav-item {
+                text-align: center;
+                margin-bottom: 5px;
+            }
+            .nav-tabs {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            .table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+
+
+        .team-section {
+                        margin-bottom: 30px;
+                        padding: 15px;
+                        border-radius: 8px;
+                        background: #f9f9f9;
+                        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+                    }
+                
+                    .player-grid, .staff-grid {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 15px;
+                        justify-content: start;
+                    }
+                
+                    .player {
+                        text-align: center;
+                        width: 120px;
+                    }
+                
+                    .player img {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 3px solid #ddd;
+                    }
+                
+                    h2, h3, h4 {
+                        color: #202A44;
+                        margin-bottom: 10px;
+                    }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Cricket Live</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="responsiveSchedule.html">Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="responsiveArchives.html">Archives</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="rankingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ranking
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="rankingDropdown">
+                            <li><a class="dropdown-item" href="rankingMen.html">ICC Ranking - Men</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="teamsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Teams
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="teamsDropdown">
+                            <li><a class="dropdown-item" href="Tindia.html">India</a></li>
+                            <li><a class="dropdown-item" href="Taustralia.html">Australia</a></li>
+                            <li><a class="dropdown-item" href="Tengland.html">England</a></li>
+                            <li><a class="dropdown-item" href="Tsouthafric.html">South Africa</a></li>
+                            <li><a class="dropdown-item" href="TsriLanka.html">Sri Lanka</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="newbiee.html">Newbiee</a></li>
+      
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+      
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+      <!-- Tabs -->
+    <div class="container-md mt-3">
+        <ul class="nav nav-tabs" id="matchTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#live" role="tab">Live</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#scorecard" role="tab">Scorecard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#squads" role="tab">Squads</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#news" role="tab">News</a>
+            </li>
+        </ul>
+    </div>
+
+      <!-- Tab Content -->
+      <div class="container-md mt-4 tab-content">
+
+        <!-- Live Section -->
+<div class="tab-pane fade show active" id="live">
+
+    <!-- Scoreboard Section -->
+    <div class="container p-3 shadow bg-white rounded mb-4">
+        <h4 class="mb-3 text-center">Live Match</h4>
+        <p class="mb-3 text-center"><strong>Match Format:</strong> One Day International</p>
+        <p class="mb-3 text-center"><strong>South Africa won the toss and elected to bat</strong></p>
+        <p class="mb-3 text-center"><strong>Current Run Rate :</strong>5.67</p>
+
+        <!-- Team Scores -->
+        <div class="team-scores d-flex justify-content-around align-items-center p-3">
+            <div class="team">
+                <h5><img src="https://flagcdn.com/w40/za.png" alt="South Africa Flag" class="flag-icon">
+                    South Africa</h5>
+                <p><strong>287-7</strong> (45.2 ov)</p>
+            </div>
+            <div class="team">
+                <h5><img src="https://flagcdn.com/w40/gb.png" alt="England Flag" class="flag-icon">
+                    England</h5>
+                <p><strong>Yet to Bat</strong></p>
+            </div>
+        </div>
+
+        <!-- Live Batsmen -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Batsman</th>
+                    <th>R</th>
+                    <th>B</th>
+                    <th>4s</th>
+                    <th>6s</th>
+                    <th>SR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Quinton de Kock</td>
+                    <td>88</td>
+                    <td>95</td>
+                    <td>7</td>
+                    <td>2</td>
+                    <td>92.6</td>
+                </tr>
+                <tr>
+                    <td>Aiden Markram</td>
+                    <td>62</td>
+                    <td>55</td>
+                    <td>5</td>
+                    <td>1</td>
+                    <td>112.7</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Bowlers -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Bowler</th>
+                    <th>O</th>
+                    <th>M</th>
+                    <th>R</th>
+                    <th>W</th>
+                    <th>Economy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jofra Archer</td>
+                    <td>10</td>
+                    <td>1</td>
+                    <td>52</td>
+                    <td>2</td>
+                    <td>5.20</td>
+                </tr>
+                <tr>
+                    <td>Reece Topley</td>
+                    <td>9</td>
+                    <td>0</td>
+                    <td>48</td>
+                    <td>1</td>
+                    <td>5.33</td>
+                </tr>
+                <tr>
+                    <td>Adil Rashid</td>
+                    <td>10</td>
+                    <td>0</td>
+                    <td>60</td>
+                    <td>2</td>
+                    <td>6.00</td>
+                </tr>
+                <tr>
+                    <td>Chris Woakes</td>
+                    <td>9</td>
+                    <td>0</td>
+                    <td>48</td>
+                    <td>2</td>
+                    <td>5.3</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Live Commentary Section -->
+    <div class="container p-3 shadow bg-white rounded mb-4">
+        <h4 class="mb-3 text-center">🎙 Live Commentary</h4>
+        <div class="commentary-box" style="max-height: 300px; overflow-y: auto; padding: 10px; border: 1px solid #ccc; background: white;">
+            <p><strong>45.2</strong> – Full toss, flicked to midwicket for a single.</p>
+            <p><strong>45.1</strong> – Yorker! Dug out by de Kock to long-off for one.</p>
+            <p style="color:blue; font-weight: bold;"><strong>44.6</strong> – SIX! Markram lofts it straight down the ground!</p>
+            <p><strong>44.4</strong> – Quick single, good running between the wickets.</p>
+            <p style="color:green; font-weight: bold;"><strong>44.2</strong> – FOUR! Short and wide, de Kock cuts it past point.</p>
+            <p style="color:red; font-weight: bold;"><strong>43.5</strong> – Wicket! Rashid strikes, Bavuma caught at mid-off!</p>
+            <p><strong>43.1</strong> – Slower ball, tapped to cover for no run.</p>
+        </div>
+    </div>
+
+</div>
+
+
+ <!-- Scorecard Section -->
+       
+ <div class="tab-pane fade" id="scorecard">
+                    
+    <!-- Match Result / Status -->
+    <h6 style="text-align: left; color: red; margin-bottom: 30px;">England yet to Bat</h6>
+
+    <!-- South Africa Innings (Batting First) -->
+    <div class="innings">
+        <div style="background-color: yellow; color: green; padding: 8px; font-size: 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+            <span>🔹 South Africa Innings</span>
+            <span>287-7 (45.2 ov)</span>
+        </div>
+
+        
+            <table>
+                <tr>
+                    <th>Batter</th>
+                    <th>Dismissal</th>
+                    <th>R</th>
+                    <th>B</th>
+                    <th>4s</th>
+                    <th>6s</th>
+                    <th>SR</th>
+                </tr>
+                <tr>
+                    <td>Quinton de Kock</td>
+                    <td>not out</td>
+                    <td>88</td>
+                    <td>95</td>
+                    <td>7</td>
+                    <td>2</td>
+                    <td>92.6</td>
+                </tr>
+               
+                <tr>
+                    <td>Reeza Hendricks</td>
+                    <td>b Woakes</td>
+                    <td>45</td>
+                    <td>50</td>
+                    <td>6</td>
+                    <td>0</td>
+                    <td>90.0</td>
+                </tr>
+                <tr>
+                    <td>David Miller</td>
+                    <td>lbw b Rashid</td>
+                    <td>30</td>
+                    <td>27</td>
+                    <td>4</td>
+                    <td>1</td>
+                    <td>111.1</td>
+                </tr>
+                <tr>
+                    <td>Heinrich Klaasen</td>
+                    <td>c Stokes b Archer</td>
+                    <td>22</td>
+                    <td>18</td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>122.2</td>
+                </tr>
+                <tr>
+                    <td>Marco Jansen</td>
+                    <td>c Bairstow b Stokes</td>
+                    <td>10</td>
+                    <td>15</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>66.7</td>
+                </tr>
+                <tr>
+                    <td>Aiden Markram</td>
+                    <td>not out</td>
+                    <td>62</td>
+                    <td>55</td>
+                    <td>5</td>
+                    <td>1</td>
+                    <td>112.7</td>
+                </tr>
+                <tr>
+                    <td>Bavuma Ngidi</td>
+                    <td>b Archer</td>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>50.0</td>
+                </tr>
+                <tr>
+                    <td>Kagiso Rabada</td>
+                    <td>b Stokes</td>
+                    <td>5</td>
+                    <td>8</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>62.5</td>
+                </tr>
+            </table>
+        
+        <p><strong>Fall of Wickets:</strong> 95-1 (Hendricks), 150-2 (Miller), 190-3 (Klaasen), 220-4 (Markram), 250-5 (Jansen), 265-6 (Rabada), 280-7 (de Kock)</p>
+        <p><strong>Did Not Bat:</strong> Lungi Ngidi, Keshav Maharaj</p>
+    </div>
+
+    <!-- England Bowling -->
+    <div class="bowling">
+        <table style="margin-bottom: 40px;">
+            <tr>
+                <th>Bowler</th>
+                <th>O</th>
+                <th>M</th>
+                <th>R</th>
+                <th>W</th>
+                <th>Economy</th>
+            </tr>
+            <tr>
+                <td>Jofra Archer</td>
+                <td>10</td>
+                <td>1</td>
+                <td>52</td>
+                <td>2</td>
+                <td>5.20</td>
+            </tr>
+            <tr>
+                <td>Chris Woakes</td>
+                <td>9</td>
+                <td>0</td>
+                <td>48</td>
+                <td>1</td>
+                <td>5.33</td>
+            </tr>
+            <tr>
+                <td>Adil Rashid</td>
+                <td>10</td>
+                <td>0</td>
+                <td>60</td>
+                <td>2</td>
+                <td>6.00</td>
+            </tr>
+            <tr>
+                <td>Ben Stokes</td>
+                <td>10</td>
+                <td>2</td>
+                <td>46</td>
+                <td>2</td>
+                <td>4.60</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Match Info Section -->
+<div class="container p-3 shadow bg-white rounded mb-4">
+<h4 class="text-center mb-3" style="color: #f0ad4e;">📍 Match Information</h4>
+<div class="table-responsive">
+<table class="table table-bordered">
+<tbody>
+    <tr>
+        <th>Match Date</th>
+        <td>February 21, 2025</td>
+    </tr>
+    <tr>
+        <th>Toss Winner</th>
+        <td>South Africa (Elected to Bat)</td>
+    </tr>
+    <tr>
+        <th>Venue</th>
+        <td>Lord's, London</td>
+    </tr>
+    <tr>
+        <th>Umpires</th>
+        <td>Richard Kettleborough, Kumar Dharmasena</td>
+    </tr>
+    <tr>
+        <th>Third Umpire</th>
+        <td>Michael Gough</td>
+    </tr>
+    <tr>
+        <th>Match Referee</th>
+        <td>Jeff Crowe</td>
+    </tr>
+    <tr>
+        <th>Pitch Report</th>
+        <td>A <b>balanced pitch</b> offering assistance to both batsmen and bowlers. Fast bowlers might get movement under lights.</td>
+    </tr>
+    <tr>
+        <th>Weather</th>
+        <td>Partly cloudy, 22°C, no rain expected.</td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+
+    
+</div>
+        
+
+
+<!-- New Squad Section (England vs South Africa) -->
+<div class="tab-pane fade" id="squads">
+    <h2>🏏️ Squads - England vs South Africa</h2>
+
+    <!-- England Squad -->
+    <div class="team-section">
+        <h3><img src="https://flagcdn.com/w40/gb.png" alt="England Flag" class="flag-icon"> England Squad</h3>
+
+        <!-- Playing XI -->
+        <h4 style="margin-top: 30px;">🔥 Playing XI</h4>
+        <div class="player-grid">
+            <div class="player">
+                <img src="images/England/Joe root.png" alt="Joe Root">
+                <p><strong>Joe Root</strong> (C)</p>
+            </div>
+            <div class="player">
+                <img src="images/England/Baristow.png" alt="Jonny Bairstow">
+                <p>Jonny Bairstow (WK)</p>
+            </div>
+            <div class="player">
+                <img src="images/England/Ben.png" alt="Ben Stokes">
+                <p>Ben Stokes</p>
+            </div>
+            <div class="player">
+                <img src="images/England/Buttler.png" alt="Jos Buttler">
+                <p>Jos Buttler</p>
+            </div>
+            <div class="player">
+                <img src="images/England/Malan.png" alt="Dawid Malan">
+                <p>Dawid Malan</p>
+            </div>
+            <div class="player">
+                <img src="images/England/Liam.png" alt="Liam Livingstone">
+                <p>Liam Livingstone</p>
+            </div>
+            <div class="player">
+                <img src="images/England/Chris.png" alt="Chris Woakes">
+                <p>Chris Woakes</p>
+            </div>
+            <div class="player">
+                <img src="images/England/Archer.png" alt="Jofra Archer">
+                <p>Jofra Archer</p>
+            </div>
+            <div class="player">
+                <img src="images/England/Reece.png" alt="Stuart Broad">
+                <p>Reece Toply</p>
+            </div>
+            <div class="player">
+                <img src="images/England/Wood.png" alt="Mark Wood">
+                <p>Mark Wood</p>
+            </div>
+            <div class="player">
+                <img src="images/England/Jordan.png" alt="James Anderson">
+                <p>Cris Jordan</p>
+            </div>
+        </div>
+
+        <!-- Bench -->
+        <h4>🛋️ Bench</h4>
+        <div class="player-grid">
+            <div class="player">
+                <img src="images/England/Moeen.png" alt="Moeen Ali">
+                <p>Moeen Ali</p>
+            </div>
+            <div class="player">
+                <img src="images/England/Sam.png" alt="Sam Curran">
+                <p>Sam Curran</p>
+            </div>
+        </div>
+
+        <!-- Support Staff -->
+        <h4>🧙‍♂️ Support Staff</h4>
+        <div class="staff-grid">
+            <div class="player">
+                <img src="images/mccullum.jpg" alt="Brendon McCullum">
+                <p><strong>Coach:</strong> Brendon McCullum</p>
+            </div>
+            <div class="player">
+                <img src="images/physio-eng.jpg" alt="Physio">
+                <p><strong>Physio:</strong> Ben Langley</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- South Africa Squad -->
+    <div class="team-section">
+        <h3><img src="https://flagcdn.com/w40/za.png" alt="South Africa Flag" class="flag-icon"> South Africa Squad</h3>
+
+        <!-- Playing XI -->
+        <h4 style="margin-top: 30px;">🔥 Playing XI</h4>
+        <div class="player-grid">
+            <div class="player">
+                <img src="images/South Africa/bavuma.png" alt="Temba Bavuma">
+                <p><strong>Temba Bavuma</strong> (C)</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/de kock.png" alt="Quinton de Kock">
+                <p>Quinton de Kock (WK)</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/markram.png" alt="Aiden Markram">
+                <p>Aiden Markram</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/rassie.png" alt="Rassie van der Dussen">
+                <p>Rassie van der Dussen</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/miller.png" alt="David Miller">
+                <p>David Miller</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/marco.png" alt="Marco Jansen">
+                <p>Marco Jansen</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/rabada.png" alt="Kagiso Rabada">
+                <p>Kagiso Rabada</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/ngidi.png" alt="Lungi Ngidi">
+                <p>Lungi Ngidi</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/anrich.png" alt="Anrich Nortje">
+                <p>Anrich Nortje</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/tabraiz.png" alt="Tabraiz Shamsi">
+                <p>Tabraiz Shamsi</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/Maharaja.png" alt="Keshav Maharaj">
+                <p>Keshav Maharaj</p>
+            </div>
+        </div>
+
+        <!-- Bench -->
+        <h4>🛋️ Bench</h4>
+        <div class="player-grid">
+            <div class="player">
+                <img src="images/South Africa/dwain.png" alt="Dwaine Pretorius">
+                <p>Dwaine Pretorius</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/wayne.png" alt="Wayne Parnell">
+                <p>Wayne Parnell</p>
+            </div>
+        </div>
+
+        <!-- Support Staff -->
+        <h4>🧙‍♂️ Support Staff</h4>
+        <div class="staff-grid">
+            <div class="player">
+                <img src="images/South Africa/Coach 1.webp" alt="Mark Boucher">
+                <p><strong>Coach:</strong> Mark Boucher</p>
+            </div>
+            <div class="player">
+                <img src="images/South Africa/Coach 3.png" alt="Physio">
+                <p><strong>Physio:</strong> Craig Govender</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+      
+        
+
+         <!-- News Section (England vs South Africa) -->
+<div class="tab-pane fade" id="news">
+    <h2>📰 Latest News - England vs South Africa</h2>
+
+    <!-- News Article 1 -->
+    <div class="news-article">
+        <img src="images/England ashes 2023/untitled-design-2023-07-29t203102-1690645548.jpg" alt="Joe Root Century" style="margin-top: 30px;margin-bottom: 30px;width: 800px;">
+        <div class="news-content">
+            <h3>🚀 Joe Root Smashes Century in Style!</h3>
+            <p>England's star batsman Joe Root played a magnificent innings, scoring a century to lead his team to a dominant position against South Africa.</p>
+            <a href="#">Read More</a>
+        </div>
+    </div>
+
+    <!-- News Article 2 -->
+    <div class="news-article">
+        <img src="images/South Africa world tour/images (1).jpg" alt="Kagiso Rabada Bowling" style="margin-top: 30px; width: 800px; margin-bottom: 30px;">
+        <div class="news-content">
+            <h3>🔥 Kagiso Rabada’s 5-Wicket Haul Stuns England!</h3>
+            <p>South African pace sensation Kagiso Rabada dismantled England’s batting lineup with a sensational five-wicket haul. Can England recover?</p>
+            <a href="#">Read More</a>
+        </div>
+    </div>
+
+    <!-- News Article 3 -->
+    <div class="news-article">
+        <img src="images/England T20 2023/1668080116_england.jpg" alt="Ben Stokes Post Match" style="margin-top: 30px;margin-bottom: 30px;">
+        <div class="news-content">
+            <h3>🎙️ Ben Stokes Reacts After Close Finish</h3>
+            <p>“It was a tough game, and both teams fought hard. These are the kind of matches that define us,” said England's all-rounder Ben Stokes in his post-match interview.</p>
+            <a href="#">Read More</a>
+        </div>
+    </div>
+</div>
+
+      </div>
+    
+       <!-- Footer Section -->
+ <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <!-- About Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">About Us</h5>
+          <p>Cricket Score Site is your go-to destination for live scores, player stats, and exciting cricket updates. Whether you're a seasoned fan or a newbie, we offer comprehensive content to help you enjoy the game.</p>
+        </div>
+  
+        <!-- Quick Links Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="/" class="text-white">Home</a></li>
+            <li><a href="/scores" class="text-white">Scores</a></li>
+            <li><a href="/players" class="text-white">Players</a></li>
+            <li><a href="#newbie" class="text-white">Newbie</a></li>
+          </ul>
+        </div>
+  
+        <!-- Contact Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-phone-alt"></i> +1 234 567 890</li>
+            <li><i class="fas fa-envelope"></i> support@cricketscores.com</li>
+            <li><i class="fas fa-map-marker-alt"></i> 123 Cricket Lane, Cricket City, Country</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Social Media Links -->
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <a href="https://facebook.com" class="text-white mx-2" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="https://twitter.com" class="text-white mx-2" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+          <a href="https://instagram.com" class="text-white mx-2" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+          <a href="https://youtube.com" class="text-white mx-2" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Footer Bottom -->
+    <div class="text-center py-3" style="background-color: #212529;">
+      <p>&copy; 2025 Cricket Score Site | All rights reserved</p>
+    </div>
+  </footer>
+  
+
+</body>
+</html>

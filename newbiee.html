@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Bootstrap CDN (CSS) -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome (For Icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS Bundle (Includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+<style>
+  .formats-card {
+
+    border-radius: 15px; /* Curved corners */
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+    transition: all 0.3s ease-in-out;
+  }
+
+  .formats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+  }
+
+  .formats-card-body {
+    background-color: #f9f9f9; /* Light background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px;
+  }
+
+  .formats-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .formats-card i {
+    color: #007bff; /* Blue icon color */
+  }
+
+  .formats-card ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .formats-card ul li {
+    margin-bottom: 10px;
+  }
+
+  .formats-card ul li::before {
+    content: '\2022'; /* Bullet point */
+    color: #007bff; /* Blue bullet */
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  .card-title{
+    font-weight: bold;
+  }
+
+    /* Tab Navigation */
+    .nav-tabs {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+    }
+    .nav-tabs .nav-link {
+        background: #202A44; /* Dark blue tab */
+        color: white;
+        border-radius: 8px;
+        margin: 3px;
+        padding: 12px 18px; /* Increased padding */
+        font-size: 18px; /* Bigger font size */
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+    .nav-tabs .nav-link:hover {
+        background: #ffc107; /* Gold hover effect */
+        color: black;
+    }
+    .nav-tabs .nav-link.active {
+        background: #ffc107; /* Active tab */
+        color: black;
+    }
+    .navbar {
+        background: linear-gradient(to right, #000000, #1a1a1a);
+        padding: 18px 50px; /* Increased spacing */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .navbar-brand {
+        font-size: 24px; /* Increased font size */
+        font-weight: bold;
+        color: white !important;
+    }
+    .navbar-nav {
+        margin-left: auto; /* Push items to the right */
+    }
+    .navbar-nav .nav-item {
+        margin: 0 18px; /* More spacing between items */
+    }
+    .navbar-nav .nav-link {
+        font-size: 20px; /* Bigger font size */
+        color: white !important;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+    }
+    .navbar-nav .nav-link:hover {
+        color: #ffc107 !important; /* Gold hover effect */
+    }
+
+    .match-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .match-item {
+        background: #f8f9fa;
+        padding: 15px;
+        border-left: 5px solid #007bff;
+        border-radius: 8px;
+        transition: 0.3s ease-in-out;
+    }
+    .match-item:hover {
+        background: #e3f2fd;
+        transform: scale(1.02);
+    }
+
+    .fact-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.fact-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fact-item:hover {
+    transform: scale(1.05);
+}
+
+.fact-item h4 {
+    color:black;
+    margin-bottom: 10px;
+}
+
+.fact-item p {
+    font-size: 16px;
+    color: #333;
+}
+
+.dropdown-menu {
+            background-color: #202A44; /* Dark blue dropdown */
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown-item {
+            color: white !important;
+            font-weight: bold;
+        }
+        .dropdown-item:hover {
+            background-color: #ffc107 !important;
+            color: black !important;
+        }
+
+
+
+</style>
+
+
+  </head>
+  <body>
+
+
+<!-- Navbar with "Newbie" tab -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+      <a class="navbar-brand" href="#">Cricket Live</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="responsiveSchedule.html">Schedule</a></li>
+              <li class="nav-item"><a class="nav-link active" href="responsiveArchives.html">Archives</a></li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="rankingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Ranking
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="rankingDropdown">
+                      <li><a class="dropdown-item" href="rankingMen.html">ICC Ranking - Men</a></li>
+                  </ul>
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="teamsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Teams
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="teamsDropdown">
+                      <li><a class="dropdown-item" href="Tindia.html">India</a></li>
+                      <li><a class="dropdown-item" href="Taustralia.html">Australia</a></li>
+                      <li><a class="dropdown-item" href="Tengland.html">England</a></li>
+                      <li><a class="dropdown-item" href="Tsouthafric.html">South Africa</a></li>
+                      <li><a class="dropdown-item" href="TsriLanka.html">Sri Lanka</a></li>
+                  </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="newbiee.html">Newbiee</a></li>
+
+              <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+
+          </ul>
+      </div>
+  </div>
+</nav>
+
+
+<!-- Newbie Section with Tabs -->
+<div class="container mt-4">
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="newbie">
+      <h2 class="text-center mb-4">Welcome to the Exciting World of Cricket!</h2>
+
+      <!-- Tabs for different sections -->
+      <ul class="nav nav-tabs" id="newbieTabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="basics-tab" data-bs-toggle="tab" href="#basics" role="tab" aria-controls="basics" aria-selected="true"><i class="fas fa-basketball-ball"></i> Cricket Basics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="formats-tab" data-bs-toggle="tab" href="#formats" role="tab" aria-controls="formats" aria-selected="false"><i class="fas fa-clock"></i> Cricket Formats</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="roles-tab" data-bs-toggle="tab" href="#roles" role="tab" aria-controls="roles" aria-selected="false"><i class="fas fa-users"></i> Key Roles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="matches-tab" data-bs-toggle="tab" href="#matches" role="tab" aria-controls="matches" aria-selected="false"><i class="fas fa-trophy"></i> Famous Matches</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="facts-tab" data-bs-toggle="tab" href="#facts" role="tab" aria-controls="facts" aria-selected="false"><i class="fas fa-lightbulb"></i> Fun Facts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="playlist-tab" data-bs-toggle="tab" href="#playlist" role="tab" aria-controls="playlist" aria-selected="false"><i class="fas fa-headphones-alt"></i> Playlist</a>
+        </li>
+      </ul>
+
+      <div class="tab-content mt-3" id="newbieTabsContent">
+
+
+        <!-- Cricket Basics Tab Content -->
+<div class="tab-pane fade show active" id="basics" role="tabpanel" aria-labelledby="basics-tab">
+  <h2 class="text-primary text-center my-3">🏏 Cricket Basics</h2>
+  <div class="row">
+      <!-- What is Cricket? -->
+      <div class="col-md-4 mb-4">
+          <div class="card formats-card">
+              <div class="card-body formats-card-body text-center">
+                  <h5 class="card-title">🏆 What is Cricket?</h5>
+                  <ul>
+                      <li>Cricket is a team sport where two teams of 11 players compete against each other.</li>
+                      <li>The objective of the game is to score more runs than the opposing team.</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      
+      <!-- Scoring Runs -->
+      <div class="col-md-4 mb-4">
+          <div class="card formats-card">
+              <div class="card-body formats-card-body text-center">
+                  <h5 class="card-title">🎯 Scoring Runs</h5>
+                  <ul>
+                      <li><strong>Boundaries:</strong> A shot that reaches the edge of the field, scoring 4 or 6 runs.</li>
+                      <li><strong>Running:</strong> Batsmen can run between wickets to score additional runs.</li>
+                      <li><strong>Extras:</strong> Includes wide balls, no-balls, and byes.</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      <!-- Dismissals -->
+      <div class="col-md-4 mb-4">
+          <div class="card formats-card">
+              <div class="card-body formats-card-body text-center">
+                  <h5 class="card-title">🚀 Dismissals</h5>
+                  <ul>
+                      <li><strong>Bowled:</strong> The bowler hits the stumps with the ball.</li>
+                      <li><strong>Caught:</strong> The batsman hits the ball into the air, and a fielder catches it.</li>
+                      <li><strong>Run Out:</strong> The batsman is out if the fielding team hits the stumps while they're out of the crease.</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Cricket Formats -->
+      <div class="col-md-4 mb-3">
+          <div class="card formats-card">
+              <div class="card-body formats-card-body text-center">
+                  <h5 class="card-title">🏏 Cricket Formats</h5>
+                  <ul>
+                      <li><strong>Test Cricket:</strong> The longest format, lasting up to 5 days.</li>
+                      <li><strong>One-Day International (ODI):</strong> Each team plays 50 overs.</li>
+                      <li><strong>T20 Cricket:</strong> A fast-paced 20-over format.</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+    
+      <!-- Fielding Positions -->
+      <div class="col-md-4 mb-3">
+          <div class="card formats-card">
+              <div class="card-body formats-card-body text-center">
+                  <h5 class="card-title">📍 Fielding Positions</h5>
+                  <ul>
+                      <li><strong>Slip:</strong> Positioned behind the batsman to catch edges.</li>
+                      <li><strong>Long On & Long Off:</strong> Fielders placed deep near the boundary.</li>
+                      <li><strong>Square Leg:</strong> Positioned on the leg-side, near the umpire.</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      <!-- Cricket Equipment -->
+      <div class="col-md-4 mb-3">
+          <div class="card formats-card">
+              <div class="card-body formats-card-body text-center">
+                  <h5 class="card-title">⚡ Cricket Equipment</h5>
+                  <ul>
+                      <li><strong>Bat:</strong> Made of willow wood for powerful shots.</li>
+                      <li><strong>Ball:</strong> Red for Test matches, white for limited-overs.</li>
+                      <li><strong>Pads & Helmets:</strong> Protective gear for safety.</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+          
+        <!-- Cricket Formats Tab Content -->
+        <div class="tab-pane fade show" id="formats" role="tabpanel" aria-labelledby="formats-tab">
+            <h4>Cricket Formats</h4>
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="card formats-card">
+                  <div class="card-body formats-card-body text-center">
+                    <i class="fas fa-calendar-day fa-3x mb-3"></i>
+                    <h5 class="formats-card-title">Test Cricket</h5>
+                    <ul>
+                      <li>Each team plays two innings.</li>
+                      <li>Match lasts 5 days, 90 overs per day.</li>
+                      <li>Played with the goal of winning or drawing.</li>
+                      <li>Longest format of cricket, traditional format.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <div class="card formats-card">
+                  <div class="card-body formats-card-body text-center">
+                    <i class="fas fa-clock fa-3x mb-3"></i>
+                    <h5 class="formats-card-title">One Day International (ODI)</h5>
+                    <ul>
+                      <li>Each team plays one innings of 50 overs.</li>
+                      <li>Played in a single day (7-8 hours).</li>
+                      <li>Team with most runs wins.</li>
+                      <li>Popular format for World Cups and tournaments.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <div class="card formats-card">
+                  <div class="card-body formats-card-body text-center">
+                    <i class="fas fa-stopwatch fa-3x mb-3"></i>
+                    <h5 class="formats-card-title">Twenty20 (T20)</h5>
+                    <ul>
+                      <li>Each team plays one innings of 20 overs.</li>
+                      <li>Match lasts around 3-4 hours.</li>
+                      <li>Fast-paced, high-intensity format.</li>
+                      <li>Popular format in leagues like the IPL.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Key Roles in Cricket Tab Content -->
+          <div class="tab-pane fade" id="roles" role="tabpanel" aria-labelledby="roles-tab">
+              <h2 class="text-primary text-center my-3">🎯 Key Roles in Cricket</h2>
+              <div class="row">
+                  
+                  <!-- Batsmen -->
+                  <div class="col-md-4 mb-4">
+                      <div class="card formats-card">
+                          <div class="card-body formats-card-body text-center">
+                              <h5 class="card-title">🏏 Batsmen</h5>
+                              <p>Batsmen aim to score runs while avoiding dismissal. A batting lineup includes specialists.</p>
+                              <ul>
+                                  <li><strong>Opening Batsman:</strong> Faces the first deliveries, setting the match's pace.</li>
+                                  <li><strong>Middle-Order Batsman:</strong> Stabilizes the innings and builds partnerships.</li>
+                                  <li><strong>Finisher:</strong> Bats towards the end to accelerate the run rate.</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <!-- Bowler -->
+                  <div class="col-md-4 mb-4">
+                      <div class="card formats-card">
+                          <div class="card-body formats-card-body text-center">
+                              <h5 class="card-title">⚡ Bowler</h5>
+                              <p>Bowlers aim to dismiss batsmen using various techniques.</p>
+                              <ul>
+                                  <li><strong>Fast Bowler:</strong> Uses speed and bounce to trouble batsmen.</li>
+                                  <li><strong>Spinner:</strong> Delivers slow balls with turn to deceive batsmen.</li>
+                                  <li><strong>All-rounder:</strong> Contributes with both batting and bowling.</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+          
+                  <!-- Wicketkeeper -->
+                  <div class="col-md-4 mb-4">
+                      <div class="card formats-card">
+                          <div class="card-body formats-card-body text-center">
+                              <h5 class="card-title">🧤 Wicketkeeper</h5>
+                              <p>The wicketkeeper stands behind the stumps, catching missed balls and attempting stumpings and run-outs.</p>
+                          </div>
+                      </div>
+                  </div>
+          
+                  <!-- Captain -->
+                  <div class="col-md-4 mb-4">
+                      <div class="card formats-card">
+                          <div class="card-body formats-card-body text-center">
+                              <h5 class="card-title">🎩 Captain</h5>
+                              <p>The leader who makes key decisions like batting order, field placements, and bowling changes.</p>
+                              <ul>
+                                  <li><strong>Tactical Captain:</strong> Known for strategic decision-making.</li>
+                                  <li><strong>Inspirational Captain:</strong> Motivates the team through performance.</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+          
+                  <!-- Fielders -->
+                  <div class="col-md-4 mb-4">
+                      <div class="card formats-card">
+                          <div class="card-body formats-card-body text-center">
+                              <h5 class="card-title">🛡️ Fielders</h5>
+                              <p>Fielders play a crucial role in stopping runs and taking catches.</p>
+                              <ul>
+                                  <li><strong>Slip Fielder:</strong> Positioned near the batsman to catch edges.</li>
+                                  <li><strong>Boundary Rider:</strong> Guards the boundary to stop big shots.</li>
+                                  <li><strong>Close-in Fielder:</strong> Positioned near the batsman to take quick catches.</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+          
+                  <!-- Umpires -->
+                  <div class="col-md-4 mb-4">
+                      <div class="card formats-card">
+                          <div class="card-body formats-card-body text-center">
+                              <h5 class="card-title">⚖️ Umpires</h5>
+                              <p>Officials who enforce the rules and make crucial decisions.</p>
+                              <ul>
+                                  <li><strong>On-field Umpire:</strong> Stands on the field to make real-time decisions.</li>
+                                  <li><strong>Third Umpire:</strong> Uses video replay for close calls.</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  
+              </div>
+          </div>
+          
+
+          <!-- Fun Facts Tab Content -->
+<div class="tab-pane fade" id="facts" role="tabpanel" aria-labelledby="facts-tab">
+  <h2 class="text-primary text-center my-3">🎉 Fun Facts about Cricket 🏏</h2>
+  <div class="fact-list">
+      <div class="fact-item">
+          <h4>📜 Oldest Format</h4>
+          <p><strong>Test cricket</strong> is the oldest form of cricket, first played in <strong>1877</strong>.</p>
+      </div>
+      <div class="fact-item">
+          <h4>🏆 Most Runs in ODI</h4>
+          <p><strong>Sachin Tendulkar</strong> holds the record for the most runs in ODIs with <strong>18,426</strong> runs!</p>
+      </div>
+      <div class="fact-item">
+          <h4>⚡ Fastest Ball Ever</h4>
+          <p><strong>Shoaib Akhtar</strong> bowled the fastest delivery at <strong>161.3 km/h (100.23 mph)</strong> in 2003.</p>
+      </div>
+      <div class="fact-item">
+          <h4>⏳ Longest Test Match</h4>
+          <p>The longest Test match was between <strong>South Africa & England</strong> in <strong>1939</strong>, lasting <strong>12 days</strong>!</p>
+      </div>
+      <div class="fact-item">
+          <h4>🚀 Overarm Bowling Rule</h4>
+          <p>In early cricket, <strong>underarm bowling</strong> was common until it was banned in <strong>1864</strong>.</p>
+      </div>
+      <div class="fact-item">
+        <h4>🏏 First Hat-Trick</h4>
+        <p><strong>Fred Spofforth</strong> was the first bowler to take a hat-trick in Test cricket in <strong>1879</strong>.</p>
+    </div>
+    <div class="fact-item">
+        <h4>🎯 Highest Individual Score</h4>
+        <p><strong>Brian Lara</strong> holds the record for the highest individual Test score: <strong>400*</strong> runs in a single innings!</p>
+    </div>
+    <div class="fact-item">
+        <h4>🔥 6 Sixes in an Over</h4>
+        <p>Only a few batsmen have hit **6 sixes in an over**, including **Yuvraj Singh** and **Gibbs**!</p>
+    </div>
+  </div>
+</div>
+
+
+
+          
+         
+          
+        <!-- Famous Matches Tab Content -->
+<div class="tab-pane fade" id="matches" role="tabpanel" aria-labelledby="matches-tab">
+  <h2 class="text-primary text-center my-3">🏏 Famous Cricket Matches 🏆</h2>
+  <div class="match-list">
+      <div class="match-item">
+          <h4>🏅 1992 Cricket World Cup Final</h4>
+          <p><strong>Australia vs. England:</strong> A historic match where Australia won their first-ever World Cup under Allan Border's captaincy.</p>
+          <a href="https://youtu.be/QXVcXQCpz_E?si=kI6ltka37hebTrpH" target="_blank" class="watch-highlights">🎥 Watch Highlights</a>
+      </div>
+      <div class="match-item">
+          <h4>🔥 2005 Ashes Series</h4>
+          <p><strong>England vs. Australia:</strong> A thrilling series that brought the Ashes back to England after 18 years, remembered for its intense competition.</p>
+          <a href="https://youtu.be/QiNvL3FfrT8?si=KDq_x7NwlaDrgWQa" target="_blank" class="watch-highlights">🎥 Watch Highlights</a>
+      </div>
+      <div class="match-item">
+          <h4>🏆 2011 ICC World Cup Final</h4>
+          <p><strong>India vs. Sri Lanka:</strong> India clinched their second World Cup title, with MS Dhoni's iconic match-winning performance.</p>
+          <a href="https://youtu.be/YphL3Whh5B0?si=dHpekZdBvOKBdSDH" target="_blank" class="watch-highlights">🎥 Watch Highlights</a>
+      </div>
+      <div class="match-item">
+          <h4>⚡ 2007 T20 World Cup Final</h4>
+          <p><strong>India vs. Pakistan:</strong> A memorable final where India won the inaugural T20 World Cup, with the final over bowled by Joginder Sharma.</p>
+          <a href="https://youtu.be/g6VJRlfeQa0?si=2aUvThKDvg6NIxfu" target="_blank" class="watch-highlights">🎥 Watch Highlights</a>
+      </div>
+  </div>
+</div>
+
+<!-- Playlist Tab Content -->
+<div class="tab-pane fade" id="playlist" role="tabpanel" aria-labelledby="playlist-tab">
+  <h2 class="text-primary text-center my-3">🎶 Cricket Playlist – Iconic Moments 🏏</h2>
+  <p class="text-center">Relive the greatest moments in cricket history with these legendary highlights! 📽️🔥</p>
+  
+  <div class="match-list">
+      <div class="match-item">
+          <h4>🏆 1983 Cricket World Cup Highlights</h4>
+          <a href="https://youtu.be/GzW4qSM2bbk?si=GmDRoiPMCfYUnAEX" target="_blank" class="watch-link">🎥 Watch Now</a>
+      </div>
+      <div class="match-item">
+          <h4>💥 MS Dhoni's World Cup Winning Six</h4>
+          <a href="https://youtu.be/R0alThHNb0Y?si=B8GeLhrHnc1Tzb5t" target="_blank" class="watch-link">🎥 Watch Now</a>
+      </div>
+      <div class="match-item">
+          <h4>🎯 Shane Warne's "Ball of the Century"</h4>
+          <a href="https://youtu.be/JwVR28XbZx8?si=gZf94sg1A_GSv5qh" target="_blank" class="watch-link">🎥 Watch Now</a>
+      </div>
+      <div class="match-item">
+          <h4>🔥 Virat Kohli's Century in Pakistan</h4>
+          <a href="https://youtu.be/L1NfeFLdwqY?si=zKt6fqFu35ivQa4W" target="_blank" class="watch-link">🎥 Watch Now</a>
+      </div>
+      <div class="match-item">
+          <h4>🏅 The 2005 Ashes: England's Historic Victory</h4>
+          <a href="https://youtu.be/QiNvL3FfrT8?si=KDq_x7NwlaDrgWQa" target="_blank" class="watch-link">🎥 Watch Now</a>
+      </div>
+  </div>
+</div>
+
+    
+         
+        <!-- FAQ Accordion -->
+        <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+          <h4>Frequently Asked Questions (FAQs)</h4>
+          <div class="accordion" id="faqAccordion">
+            <!-- FAQ 1 -->
+            <div class="card">
+              <div class="card-header" id="faqHeading1">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-bs-toggle="collapse" data-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                    How long does a typical cricket match last?
+                  </button>
+                </h5>
+              </div>
+              <div id="faqCollapse1" class="collapse show" aria-labelledby="faqHeading1" data-parent="#faqAccordion">
+                <div class="card-body">
+                  The length of a cricket match depends on the format. A Test match can last up to 5 days, an ODI lasts around 7-8 hours, and a T20 match takes about 3-4 hours.
+                </div>
+              </div>
+            </div>        
+
+            <!-- FAQ 2 -->
+            <div class="card">
+              <div class="card-header" id="faqHeading2">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-bs-toggle="collapse" data-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                    What is the difference between a fast bowler and a spinner?
+                  </button>
+                </h5>
+              </div>
+              <div id="faqCollapse2" class="collapse" aria-labelledby="faqHeading2" data-parent="#faqAccordion">
+                <div class="card-body">
+                  A fast bowler delivers the ball at high speeds (above 140 km/h), aiming to intimidate the batsman with pace. A spinner, on the other hand, delivers the ball slowly, using wrist or finger spin to deceive the batsman.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="card">
+              <div class="card-header" id="faqHeading3">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-bs-toggle="collapse" data-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                    Why is cricket called a "gentleman's game"?
+                  </button>
+                </h5>
+              </div>
+              <div id="faqCollapse3" class="collapse" aria-labelledby="faqHeading3" data-parent="#faqAccordion">
+                <div class="card-body">
+                  Cricket is often referred to as a "gentleman's game" due to its historical roots in English upper-class culture, where the emphasis was on good manners, fair play, and sportsmanship. 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-5 pb-4 mt-5">
+  <div class="container">
+    <div class="row">
+      <!-- About Section -->
+      <div class="col-md-4 mb-4">
+        <h5 class="text-uppercase mb-4">About Us</h5>
+        <p>Cricket Score Site is your go-to destination for live scores, player stats, and exciting cricket updates. Whether you're a seasoned fan or a newbie, we offer comprehensive content to help you enjoy the game.</p>
+      </div>
+
+      <!-- Quick Links Section -->
+      <div class="col-md-4 mb-4">
+        <h5 class="text-uppercase mb-4">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="/" class="text-white">Home</a></li>
+          <li><a href="/scores" class="text-white">Scores</a></li>
+          <li><a href="/players" class="text-white">Players</a></li>
+          <li><a href="#newbie" class="text-white">Newbie</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="col-md-4 mb-4">
+        <h5 class="text-uppercase mb-4">Contact Us</h5>
+        <ul class="list-unstyled">
+          <li><i class="fas fa-phone-alt"></i> +1 234 567 890</li>
+          <li><i class="fas fa-envelope"></i> support@cricketscores.com</li>
+          <li><i class="fas fa-map-marker-alt"></i> 123 Cricket Lane, Cricket City, Country</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Social Media Links -->
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <a href="https://facebook.com" class="text-white mx-2" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+        <a href="https://twitter.com" class="text-white mx-2" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="https://instagram.com" class="text-white mx-2" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="https://youtube.com" class="text-white mx-2" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <!-- About Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">About Us</h5>
+          <p>Cricket Score Site is your go-to destination for live scores, player stats, and exciting cricket updates. Whether you're a seasoned fan or a newbie, we offer comprehensive content to help you enjoy the game.</p>
+        </div>
+  
+        <!-- Quick Links Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="/" class="text-white">Home</a></li>
+            <li><a href="/scores" class="text-white">Scores</a></li>
+            <li><a href="/players" class="text-white">Players</a></li>
+            <li><a href="#newbie" class="text-white">Newbie</a></li>
+          </ul>
+        </div>
+  
+        <!-- Contact Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-phone-alt"></i> +1 234 567 890</li>
+            <li><i class="fas fa-envelope"></i> support@cricketscores.com</li>
+            <li><i class="fas fa-map-marker-alt"></i> 123 Cricket Lane, Cricket City, Country</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Social Media Links -->
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <a href="https://facebook.com" class="text-white mx-2" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="https://twitter.com" class="text-white mx-2" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+          <a href="https://instagram.com" class="text-white mx-2" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+          <a href="https://youtube.com" class="text-white mx-2" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Footer Bottom -->
+    <div class="text-center py-3" style="background-color: #212529;">
+      <p>&copy; 2025 Cricket Score Site | All rights reserved</p>
+    </div>
+  </footer>
+  
+
+
+  </body>
+</html>

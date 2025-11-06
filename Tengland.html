@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /* Navbar Styling */
+
+        .navbar {
+        background: linear-gradient(to right, #000000, #1a1a1a);
+        padding: 18px 50px; /* Increased spacing */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .navbar-brand {
+        font-size: 24px; /* Increased font size */
+        font-weight: bold;
+        color: white !important;
+    }
+    .navbar-nav {
+        margin-left: auto; /* Push items to the right */
+    }
+    .navbar-nav .nav-item {
+        margin: 0 18px; /* More spacing between items */
+    }
+    .navbar-nav .nav-link {
+        font-size: 20px; /* Bigger font size */
+        color: white !important;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+    }
+    .navbar-nav .nav-link:hover {
+        color: #ffc107 !important; /* Gold hover effect */
+    }
+
+    /* Tab Navigation */
+    .nav-tabs {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+    }
+    .nav-tabs .nav-link {
+        background: #202A44; /* Dark blue tab */
+        color: white;
+        border-radius: 8px;
+        margin: 3px;
+        padding: 12px 18px; /* Increased padding */
+        font-size: 18px; /* Bigger font size */
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+    .nav-tabs .nav-link:hover {
+        background: #ffc107; /* Gold hover effect */
+        color: black;
+    }
+    .nav-tabs .nav-link.active {
+        background: #ffc107; /* Active tab */
+        color: black;
+    }
+
+    .dropdown-menu {
+            background-color: #202A44; /* Dark blue dropdown */
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown-item {
+            color: white !important;
+            font-weight: bold;
+        }
+        .dropdown-item:hover {
+            background-color: #ffc107 !important;
+            color: black !important;
+        }
+
+
+        
+        /* Tab Content */
+        .tab-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+       
+
+        
+        
+    .card-hover {
+        transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-15px) scale(1.05);
+        box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+        background-color: #f4f4f4; /* Light background color change on hover */
+    }
+
+    .card-header {
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #003366;
+        color: white;
+        text-align: center;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .card-body {
+        font-size: 16px;
+        padding: 20px;
+    }
+
+    .col-md-4 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .row {
+        margin-top: 20px;
+    }
+
+    </style>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Cricket Live</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="responsiveSchedule.html">Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="responsiveArchives.html">Archives</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="rankingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ranking
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="rankingDropdown">
+                            <li><a class="dropdown-item" href="rankingMen.html">ICC Ranking - Men</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="teamsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Teams
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="teamsDropdown">
+                            <li><a class="dropdown-item" href="Tindia.html">India</a></li>
+                            <li><a class="dropdown-item" href="Taustralia.html">Australia</a></li>
+                            <li><a class="dropdown-item" href="Tengland.html">England</a></li>
+                            <li><a class="dropdown-item" href="Tsouthafric.html">South Africa</a></li>
+                            <li><a class="dropdown-item" href="TsriLanka.html">Sri Lanka</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="newbiee.html">Newbiee</a></li>
+      
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+      
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+       <!-- Tabs for Sections -->
+       <div class="container mt-4">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#schedule">Schedule</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#players">Players</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#photos">Photos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#stats">Stats</a>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-3">
+
+            <div class="tab-pane fade show active" id="home">
+                <h2>🏏 Top Stories</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="images/England T20 2023/1668080116_england.jpg" class="img-fluid rounded" alt="Top Story">
+                    </div>
+                    <div class="col-md-6">
+                        <h4>England Clinches Thrilling Victory Over Australia</h4>
+                        <p>England defeated Australia by 5 wickets in a dramatic Ashes Test match.</p>
+                        <a class="btn btn-link" data-bs-toggle="collapse" href="#moreNews" role="button" aria-expanded="false" aria-controls="moreNews">
+                            Read More
+                        </a>
+                        <div class="collapse mt-2" id="moreNews">
+                            <p>Ben Stokes played a match-winning knock, while James Anderson and Jofra Archer dismantled the Australian batting lineup. England successfully chased down the target in the final session to secure an unforgettable win.</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <h2 class="mt-4">📰 Top News</h2>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Joe Root:</strong> Becomes England's highest Test run-scorer.</li>
+                    <li class="list-group-item"><strong>Jofra Archer:</strong> Set to return for England in upcoming series.</li>
+                    <li class="list-group-item"><strong>England:</strong> Announces squad for the upcoming T20 World Cup.</li>
+                </ul>
+            
+                <h2 class="mt-4">📸 Latest Photos</h2>
+                <div class="row">
+                    <div class="col-md-4"><img src="images/England T20 2023/images (1).jpg" class="img-fluid rounded" style="height: 300px; width: 400px;" alt="Photo 1"></div>
+                    <div class="col-md-4"><img src="images/England ashes 2023/images (2).jpg" class="img-fluid rounded" style="height: 300px; width: 400px;" alt="Photo 2"></div>
+                    <div class="col-md-4"><img src="images/England T20 2023/fobearo8_jos-buttler-afp_625x300_01_November_22.webp" class="img-fluid rounded" alt="Photo 3"></div>
+                </div>
+            
+                <h2 class="mt-4">🎥 Latest Videos</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="https://youtu.be/YqKYpgZ9FWU?si=1i7v5Sz4Dhld3Fpw" target="_blank">
+                            <img src="images/England T20 2023/images (2).jpg" 
+                                alt="Match Highlights" 
+                                style="width: 100%; max-width: 500px; border-radius: 10px; margin-top: 15px;">
+                        </a> 
+                    </div>
+
+                    <div class="col-md-4">
+                        <a href="https://youtu.be/YqKYpgZ9FWU?si=1i7v5Sz4Dhld3Fpw" target="_blank">
+                            <img src="images/England ashes 2023/untitled-design-2023-07-29t203102-1690645548.jpg" 
+                                alt="Match Highlights" 
+                                style="width: 100%; max-width: 500px; border-radius: 10px; margin-top: 15px;">
+                        </a> 
+                    </div>
+
+                    <div class="col-md-4">
+                        <a href="https://youtu.be/YqKYpgZ9FWU?si=1i7v5Sz4Dhld3Fpw" target="_blank">
+                            <img src="images/Australia ashes 2023/post_image_685de4b.jpg" 
+                                alt="Match Highlights" 
+                                style="width: 100%; max-width: 500px; border-radius: 10px; margin-top: 15px;">
+                        </a> 
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="schedule">
+                <h2>📅 Team England Match Schedule</h2>
+                <table class="table table-striped mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Date</th>
+                            <th>Opponent</th>
+                            <th>Venue</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>20th Feb 2025</td>
+                            <td>South Africa</td>
+                            <td>Lord's, London</td>
+                            <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#match1">View Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>25th Feb 2025</td>
+                            <td>Australia</td>
+                            <td>Melbourne Cricket Ground</td>
+                            <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#match2">View Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>1st March 2025</td>
+                            <td>New Zealand</td>
+                            <td>Trent Bridge, Nottingham</td>
+                            <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#match3">View Details</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+                <!-- Match 1 Modal -->
+                <div class="modal fade" id="match1" tabindex="-1" aria-labelledby="match1Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="match1Label">Match Details: England vs South Africa</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Date:</strong> 20th Feb 2025</p>
+                                <p><strong>Venue:</strong> Lord's, London</p>
+                                <p><strong>Format:</strong> Test Match</p>
+                                <p><strong>Match Time:</strong> 10:00 AM GMT</p>
+                                <p><strong>Weather Forecast:</strong> Cloudy, 15°C</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Match 2 Modal -->
+                <div class="modal fade" id="match2" tabindex="-1" aria-labelledby="match2Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="match2Label">Match Details: England vs Australia</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Date:</strong> 25th Feb 2025</p>
+                                <p><strong>Venue:</strong> Melbourne Cricket Ground</p>
+                                <p><strong>Format:</strong> ODI</p>
+                                <p><strong>Match Time:</strong> 7:30 PM AEST</p>
+                                <p><strong>Weather Forecast:</strong> Clear skies, 22°C</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Match 3 Modal -->
+                <div class="modal fade" id="match3" tabindex="-1" aria-labelledby="match3Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="match3Label">Match Details: England vs New Zealand</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Date:</strong> 1st March 2025</p>
+                                <p><strong>Venue:</strong> Trent Bridge, Nottingham</p>
+                                <p><strong>Format:</strong> T20</p>
+                                <p><strong>Match Time:</strong> 6:00 PM GMT</p>
+                                <p><strong>Weather Forecast:</strong> Partly Cloudy, 18°C</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="players">
+                <h2 class="text-center">🏏 Team England Players</h2>
+            
+                <!-- Batsmen Section -->
+                <h3 class="mt-4">🦸‍♂️ Batsmen</h3>
+                <div class="row">
+                    <div class="col-md-4 d-flex align-items-center mb-3">
+                        <img src="images/England/Joe root.png" class="rounded-circle" width="80" height="80" alt="Joe Root">
+                        <span class="ms-3">Joe Root</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-3">
+                        <img src="images/England/Baristow.png" class="rounded-circle" width="80" height="80" alt="Jonny Bairstow">
+                        <span class="ms-3">Jonny Bairstow</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-3">
+                        <img src="images/England/Buttler.png" class="rounded-circle" width="80" height="80" alt="Harry Brook">
+                        <span class="ms-3">Josh Buttler</span>
+                    </div>
+                </div>
+            
+                <!-- Bowlers Section -->
+                <h3 class="mt-4">🎯 Bowlers</h3>
+                <div class="row">
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/England/Chris.png" class="rounded-circle" width="80" height="80" alt="James Anderson">
+                        <span class="ms-3">Chris Woakes</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/England/Reece.png" class="rounded-circle" width="80" height="80" alt="Jofra Archer">
+                        <span class="ms-3">Reece Topley</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/England/Wood.png" class="rounded-circle" width="80" height="80" alt="Mark Wood">
+                        <span class="ms-3">Mark Wood</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/England/Archer.png" class="rounded-circle" width="80" height="80" alt="archer">
+                        <span class="ms-3">Jofra Archer</span>
+                    </div>
+                </div>
+            
+                <!-- All-rounders Section -->
+                <h3 class="mt-4">🔥 All-rounders</h3>
+                <div class="row">
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/England/Ben.png" class="rounded-circle" width="80" height="80" alt="Ben Stokes">
+                        <span class="ms-3">Ben Stokes</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/England/Moeen.png" class="rounded-circle" width="80" height="80" alt="Moeen Ali">
+                        <span class="ms-3">Moeen Ali</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/England/Liam.png" class="rounded-circle" width="80" height="80" alt="Liam Livingstone">
+                        <span class="ms-3">Liam Livingstone</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-4">
+                        <img src="images/England/Sam.png" class="rounded-circle" width="80" height="80" alt="sam currun">
+                        <span class="ms-3">Sam Curran</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="photos">
+                <h2 class="text-center">📸 Team England Moments</h2>
+            
+                <!-- ICC T20 World Cup Photos -->
+                <div class="mt-4">
+                    <h3>🏆 Team England in ICC T20 World Cup</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <img src="images/England T20 2023/fobearo8_jos-buttler-afp_625x300_01_November_22.webp" class="img-fluid" alt="ICC T20 1">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <img src="images/England T20 2023/images (1).jpg" class="img-fluid" alt="ICC T20 2">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <img src="images/England T20 2023/1668080116_england.jpg" class="img-fluid" alt="ICC T20 3">
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Team England in Ashes 2023 -->
+                <div class="mt-4">
+                    <h3>🏏 Team England in Ashes 2023</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <img src="images/Australia ashes 2023/b8d2e2fed400253c402e64e310fa6d0e.jpg" class="img-fluid" alt="Ashes 1">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <img src="images/Australia ashes 2023/post_image_685de4b.jpg" class="img-fluid" alt="Ashes 2">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <img src="images/Australia ashes 2023/images (3).jpg" class="img-fluid" alt="Ashes 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            
+            <div class="tab-pane fade" id="stats">
+                <h2 class="text-center">📊 Team England Stats</h2>
+            
+                <!-- Team Stats Table -->
+                <div class="container p-3 shadow bg-white rounded mb-4">
+                    <h3>🏏 Overall Team Stats</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Matches Played</td>
+                                <td>310</td>
+                            </tr>
+                            <tr>
+                                <td>Wins</td>
+                                <td>180</td>
+                            </tr>
+                            <tr>
+                                <td>Losses</td>
+                                <td>110</td>
+                            </tr>
+                            <tr>
+                                <td>Draws</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>Win Percentage</td>
+                                <td>58.1%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            
+                <!-- Recent Performance -->
+                <div class="mt-4">
+                    <h3>🔥 Recent Performance</h3>
+                    <div class="row text-center">
+                        <!-- Last 5 Matches Card -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card card-hover">
+                                <div class="card-header">
+                                    🏆 Last 5 Matches
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        <li>England vs Australia: Lost</li>
+                                        <li>England vs India: Won</li>
+                                        <li>England vs Pakistan: Won</li>
+                                        <li>England vs South Africa: Lost</li>
+                                        <li>England vs New Zealand: Won</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Batting Average Card -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card card-hover">
+                                <div class="card-header">
+                                    ⚡ Batting Average
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        <li>Joe Root: 50.1</li>
+                                        <li>Jonny Bairstow: 42.5</li>
+                                        <li>Ben Stokes: 45.7</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Bowling Stats Card -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card card-hover">
+                                <div class="card-header">
+                                    🎯 Bowling Stats
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        <li>James Anderson: 3.2 wickets per match</li>
+                                        <li>Jofra Archer: 2.8 wickets per match</li>
+                                        <li>Mark Wood: 3.0 wickets per match</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+        </div>
+     <!-- Footer Section -->
+ <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <!-- About Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">About Us</h5>
+          <p>Cricket Score Site is your go-to destination for live scores, player stats, and exciting cricket updates. Whether you're a seasoned fan or a newbie, we offer comprehensive content to help you enjoy the game.</p>
+        </div>
+  
+        <!-- Quick Links Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="/" class="text-white">Home</a></li>
+            <li><a href="/scores" class="text-white">Scores</a></li>
+            <li><a href="/players" class="text-white">Players</a></li>
+            <li><a href="#newbie" class="text-white">Newbie</a></li>
+          </ul>
+        </div>
+  
+        <!-- Contact Section -->
+        <div class="col-md-4 mb-4">
+          <h5 class="text-uppercase mb-4">Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-phone-alt"></i> +1 234 567 890</li>
+            <li><i class="fas fa-envelope"></i> support@cricketscores.com</li>
+            <li><i class="fas fa-map-marker-alt"></i> 123 Cricket Lane, Cricket City, Country</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Social Media Links -->
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <a href="https://facebook.com" class="text-white mx-2" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="https://twitter.com" class="text-white mx-2" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+          <a href="https://instagram.com" class="text-white mx-2" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+          <a href="https://youtube.com" class="text-white mx-2" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Footer Bottom -->
+    <div class="text-center py-3" style="background-color: #212529;">
+      <p>&copy; 2025 Cricket Score Site | All rights reserved</p>
+    </div>
+  </footer>
+  
+
+</body>
+</html>
